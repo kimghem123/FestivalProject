@@ -5,8 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.widget.RadioButton
 import androidx.core.widget.doAfterTextChanged
@@ -47,14 +45,17 @@ class RegisterActivity : AppCompatActivity() {
         register_registerBtn.setOnClickListener {
             var isChecked = register_radioGroup.checkedRadioButtonId
             val radioButton: RadioButton = findViewById(isChecked)
-            val test = LoginModel() //변수명 변경
-            val userProfile = test.test(
+            val userProfileModel:LoginModel = LoginModel() //변수명 변경
+
+            userProfileModel.modifyUserProfile(
                 register_id.text.toString(),
                 register_password1.text.toString(),
                 radioButton.text.toString(),
                 register_phoneNum.text.toString(),
                 register_email.text.toString()
             )
+            val userProfiletest = userProfileModel.getUserProfile()
+            Log.d("model",""+userProfiletest.userId)
             registerCompleteButton(this@RegisterActivity)
         }
     }
