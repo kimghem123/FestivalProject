@@ -2,12 +2,15 @@ package com.example.festivalproject
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.RadioButton
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -15,45 +18,51 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        register_password2.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                if (register_password1.text.toString() != register_password2.text.toString()) {
-                    register_passwordCheck.setText("#비밀번호가 일치하지 않습니다")
-                } else if (register_password1.text.toString() == register_password2.text.toString()) {
-                    register_passwordCheck.setText("비밀번호가 일치합니다")
-                }
+        register_password2.doOnTextChanged { text, start, before, count ->
+            if (register_password1.text.toString() != register_password2.text.toString()) {
+                register_passwordCheck.setText("#비밀번호가 일치하지 않습니다")
+            } else if (register_password1.text.toString() == register_password2.text.toString()) {
+                register_passwordCheck.setText("비밀번호가 일치합니다")
             }
+        }
 
-            override fun beforeTextChanged(p0: CharSequence?, start: Int, count: Int, after: Int) {
-                Log.d("edit", "beforeTextChanged: " + p0)
-            }
+        register_email.doAfterTextChanged {
+            if (register_id.text.toString().isNotEmpty()
+                && register_password1.text.toString().isNotEmpty()
+                && register_password2.text.toString().isNotEmpty()
+                && register_password1.text.toString() == register_password2.text.toString()
+                && register_phoneNum.text.toString().isNotEmpty()
+                && register_email.text.toString().isNotEmpty()
+            ) {
+                Log.d("register", "check")
+                register_registerBtn.isEnabled = true
+                register_registerBtn.setBackgroundColor(Color.parseColor("#FFBF87"))
 
-            override fun onTextChanged(p0: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.d("edit", "onTextChanged: " + p0)
+            } else {
+                Log.d("register", "false")
+                register_registerBtn.isEnabled = false
             }
-        })
+        }
 
         register_registerBtn.setOnClickListener {
             var isChecked = register_radioGroup.checkedRadioButtonId
             val radioButton: RadioButton = findViewById(isChecked)
-            var userProfile: UserProfile = UserProfile(
+            val test = LoginModel() //변수명 변경
+            val userProfile = test.test(
                 register_id.text.toString(),
                 register_password1.text.toString(),
                 radioButton.text.toString(),
                 register_phoneNum.text.toString(),
                 register_email.text.toString()
             )
-            registerCompleteButton(userProfile,this@RegisterActivity)
+            registerCompleteButton(this@RegisterActivity)
         }
     }
+
 }
 
-fun registerCompleteButton(userProfile: UserProfile,activity: Activity) {
-    Log.d(
-        "registertest",
-        "아이디" + userProfile.id + "비번" + userProfile.password + "성별" + userProfile.sex + "전화" + userProfile.phoneNum + "이메일" + userProfile.email
-    )
-    val intent = Intent(activity,LoginActivity::class.java)
+fun registerCompleteButton(activity: Activity) {
+    val intent = Intent(activity, LoginActivity::class.java)
     activity.startActivity(intent)
 }
 
