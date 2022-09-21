@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/login_id"
             android:hint="ID"
             android:paddingLeft="10dp"
             android:layout_width="250dp"
@@ -27,8 +28,10 @@
             android:maxLines="1" />
 
         <EditText
+            android:id="@+id/login_password"
             android:paddingLeft="10dp"
             android:hint="PASSWORD"
+            android:inputType="textPassword"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:background="#ffffff"

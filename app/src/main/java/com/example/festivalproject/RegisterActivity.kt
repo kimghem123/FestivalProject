@@ -16,8 +16,6 @@ import com.github.razir.progressbutton.bindProgressButton
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import java.util.ArrayList
 
 class RegisterActivity : AppCompatActivity() {
@@ -58,7 +56,7 @@ class RegisterActivity : AppCompatActivity() {
         register_registerBtn.setOnClickListener {
             var isChecked = register_radioGroup.checkedRadioButtonId
             val radioButton: RadioButton = findViewById(isChecked)
-            val userProfileModel: RegisterModel = RegisterModel() //변수명 변경
+            val registerModel: RegisterModel = RegisterModel() //변수명 변경
 
             register_registerBtn.showProgress {
                 buttonTextRes = R.string.loading
@@ -71,7 +69,7 @@ class RegisterActivity : AppCompatActivity() {
                 register_phoneNum.text.toString(),
                 register_email.text.toString()
             )
-            userProfileModel.signUpNewUser(
+            registerModel.signUpNewUser(
                 newUser,
                 this
             )
