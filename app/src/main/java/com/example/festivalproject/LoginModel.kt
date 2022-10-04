@@ -25,6 +25,14 @@ class LoginModel {
             db!!.userDao().deleteAll()
         }
     }
+
+    fun autoLogin(userId: String,userPassword: String,context: Context){
+        val sp = context.getSharedPreferences("login_sp",Context.MODE_PRIVATE)
+        val editor = sp.edit()
+        editor.putString("userId",userId)
+        editor.putString("userPassword",userPassword)
+        editor.commit()
+    }
 }
 
 

@@ -1,5 +1,7 @@
 package com.example.festivalproject
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,19 +24,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bindProgressButton(testregisterBtn)
-        testregisterBtn.attachTextChangeAnimator()
-
-        testregisterBtn.setOnClickListener {
-            testregisterBtn.showProgress {
-                buttonTextRes = R.string.loading
-                progressColor = Color.WHITE
-            }
-            Handler(Looper.getMainLooper()).postDelayed({testregisterBtn.hideProgress(R.string.success)},2000)
-
-            Log.d("aaa","aaa")
-
-
+        val sp = getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+        val editor = sp.edit()
+        val userId = sp.getString("userId",null)
+        if(userId != null){
+            startActivity(Intent(this@MainActivity,HomeActivity::class.java))
+            finish()
+        }
+        else{
+            startActivity(Intent(this@MainActivity,LoginActivity::class.java))
+            finish()
         }
 
     }
