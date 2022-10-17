@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         val editor = sp.edit()
         val userId = sp.getString("userId",null)
         if(userId != null){
-            startActivity(Intent(this@MainActivity,HomeActivity::class.java))
+            startActivity(Intent(this@MainActivity,HomeActivity2::class.java))
             finish()
         }
         else{

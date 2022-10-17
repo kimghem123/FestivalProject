@@ -29,7 +29,8 @@ class LoginActivity : AppCompatActivity() {
                     if(login_autoLogin.isChecked){
                         loginModel.autoLogin(userId,userPassword,this@LoginActivity)
                     }
-                    startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
+                    startActivity(Intent(this@LoginActivity,HomeActivity2::class.java))
+                    finish()
                 }
                 else  Log.d("login","시ㅣㅣㅣㅣ")
             }
