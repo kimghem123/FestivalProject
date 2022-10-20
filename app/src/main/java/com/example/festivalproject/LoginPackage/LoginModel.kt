@@ -1,9 +1,7 @@
-package com.example.festivalproject
+package com.example.festivalproject.LoginPackage
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
-import androidx.core.content.contentValuesOf
+import com.example.festivalproject.UserDatabase
 import kotlinx.coroutines.*
 
 class LoginModel {

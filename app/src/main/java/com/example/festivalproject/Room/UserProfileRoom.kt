@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.festivalproject.Room.UserProfileDao
+import com.example.festivalproject.Room.UserProfileEntity
 
 @Database(entities = [UserProfileEntity::class], version = 1)
 abstract class UserDatabase : RoomDatabase(){
-    abstract fun userDao():UserProfileDao
+    abstract fun userDao(): UserProfileDao
 
     companion object{
         private var instance:UserDatabase? = null

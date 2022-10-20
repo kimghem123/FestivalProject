@@ -1,13 +1,12 @@
-package com.example.festivalproject
+package com.example.festivalproject.Room
 
 import androidx.room.*
-import retrofit2.http.DELETE
 
 @Dao
 interface UserProfileDao {
 
     @Insert
-    suspend fun insert(user:UserProfileEntity)
+    suspend fun insert(user: UserProfileEntity)
 
     @Query("DELETE FROM userProfile")
     suspend fun deleteAll()

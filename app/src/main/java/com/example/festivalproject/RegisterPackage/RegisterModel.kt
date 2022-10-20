@@ -1,13 +1,10 @@
-package com.example.festivalproject
+package com.example.festivalproject.RegisterPackage
 
 import android.content.Context
-import android.os.AsyncTask
-import android.util.Log
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import com.example.festivalproject.UserDatabase
+import com.example.festivalproject.Room.UserProfile
+import com.example.festivalproject.Room.UserProfileEntity
 import kotlinx.coroutines.*
-import java.security.AccessControlContext
 import kotlin.collections.ArrayList
 
 

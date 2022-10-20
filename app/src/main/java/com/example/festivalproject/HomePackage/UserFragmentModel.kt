@@ -1,4 +1,4 @@
-package com.example.festivalproject
+package com.example.festivalproject.HomePackage
 
 import android.content.Context
 

@@ -1,4 +1,4 @@
-package com.example.festivalproject
+package com.example.festivalproject.RegisterPackage
 
 import android.app.Activity
 import android.content.Intent
@@ -11,6 +11,9 @@ import android.util.Log
 import android.widget.RadioButton
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
+import com.example.festivalproject.LoginPackage.LoginActivity
+import com.example.festivalproject.R
+import com.example.festivalproject.Room.UserProfileEntity
 import com.github.razir.progressbutton.attachTextChangeAnimator
 import com.github.razir.progressbutton.bindProgressButton
 import com.github.razir.progressbutton.hideProgress

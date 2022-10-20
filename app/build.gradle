@@ -52,7 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Retrofit 라이브러리
-    implementation 'com.squareup.retrofit2:retrofit:2.6.4'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
 
     //로딩 버튼
     implementation 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
@@ -62,6 +62,7 @@ dependencies {
     implementation 'com.tickaroo.tikxml:annotation:0.8.13'
     implementation 'com.tickaroo.tikxml:core:0.8.13'
     implementation 'com.tickaroo.tikxml:retrofit-converter:0.8.13'
+    kapt 'com.tickaroo.tikxml:processor:0.8.13'
 
     //actionButton
     kapt 'com.tickaroo.tikxml:processor:0.8.13'
@@ -70,4 +71,17 @@ dependencies {
     implementation 'com.android.support:design:32.0.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+//stetho
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp:1.5.1'
+    implementation 'com.facebook.stetho:stetho-urlconnection:1.5.1'
+
+    //recyclerview
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 }

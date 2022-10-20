@@ -1,4 +1,4 @@
-package com.example.festivalproject
+package com.example.festivalproject.Room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

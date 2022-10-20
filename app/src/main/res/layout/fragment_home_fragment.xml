@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home_fragment"
+    tools:context=".HomePackage.Home_fragment"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -55,72 +55,115 @@
                 android:text="search" />
 
             <Button
-                android:id="@+id/homefragment_one"
+                android:id="@+id/homefragment_A000"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_below="@+id/homefragment_search"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:background="@drawable/menu_button_shape"
+                android:text="연극" />
 
             <Button
-                android:id="@+id/homefragment_two"
+                android:text="음악"
+                android:id="@+id/homefragment_B000"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_below="@+id/homefragment_search"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:layout_toRightOf="@id/homefragment_one" />
+                android:layout_toRightOf="@id/homefragment_A000"
+                android:background="@drawable/menu_button_shape" />
 
             <Button
-                android:id="@+id/homefragment_three"
+                android:text="무용"
+                android:id="@+id/homefragment_C000"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
-                android:layout_below="@+id/homefragment_one"
+                android:layout_below="@+id/homefragment_A000"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp" />
-
-            <Button
-                android:id="@+id/homefragment_four"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_below="@+id/homefragment_two"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_toRightOf="@id/homefragment_one" />
+                android:background="@drawable/menu_button_shape" />
 
             <Button
-                android:id="@+id/homefragment_five"
+                android:text="미술"
+                android:id="@+id/homefragment_D000"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
-                android:layout_below="@+id/homefragment_three"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp" />
-
-            <Button
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_below="@+id/homefragment_three"
+                android:layout_below="@+id/homefragment_B000"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_toRightOf="@id/homefragment_one" />
-            <Button
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_below="@+id/homefragment_five"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp" />
+                android:layout_toRightOf="@id/homefragment_A000"
+                android:background="@drawable/menu_button_shape" />
 
             <Button
+                android:text="건축"
+                android:id="@+id/homefragment_E000"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
-                android:layout_below="@+id/homefragment_five"
+                android:layout_below="@+id/homefragment_C000"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_toRightOf="@id/homefragment_one" />
+                android:background="@drawable/menu_button_shape" />
+
+            <Button
+                android:text="영상"
+                android:id="@+id/homefragment_G000"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_below="@+id/homefragment_C000"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@id/homefragment_A000"
+                android:background="@drawable/menu_button_shape" />
+
+            <Button
+                android:text="문학"
+                android:id="@+id/homefragment_H000"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_below="@+id/homefragment_E000"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/menu_button_shape" />
+
+            <Button
+                android:text="문화정책"
+                android:id="@+id/homefragment_I000"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_below="@+id/homefragment_E000"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@id/homefragment_A000"
+                android:background="@drawable/menu_button_shape" />
+
+            <Button
+                android:text="축제문화공간"
+                android:id="@+id/homefragment_J000"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_below="@+id/homefragment_H000"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/menu_button_shape" />
+
+            <Button
+                android:text="기타"
+                android:id="@+id/homefragment_L000"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_below="@+id/homefragment_H000"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@id/homefragment_A000"
+                android:background="@drawable/menu_button_shape" />
         </RelativeLayout>
 
     </ScrollView>

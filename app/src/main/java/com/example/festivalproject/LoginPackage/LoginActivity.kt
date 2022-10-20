@@ -1,11 +1,13 @@
-package com.example.festivalproject
+package com.example.festivalproject.LoginPackage
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.festivalproject.HomePackage.HomeActivity
+import com.example.festivalproject.R
+import com.example.festivalproject.RegisterPackage.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
                     if(login_autoLogin.isChecked){
                         loginModel.autoLogin(userId,userPassword,this@LoginActivity)
                     }
-                    startActivity(Intent(this@LoginActivity,HomeActivity2::class.java))
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     finish()
                 }
                 else  Log.d("login","시ㅣㅣㅣㅣ")
