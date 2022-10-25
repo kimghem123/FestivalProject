@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.FragmentTransaction
 import com.example.festivalproject.R
 import kotlinx.android.synthetic.main.fragment_home_fragment.*
 
 class Home_fragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,8 +22,7 @@ class Home_fragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        val transaction = this.requireActivity().supportFragmentManager.beginTransaction()
+        val transaction: FragmentTransaction = this.requireActivity().supportFragmentManager.beginTransaction()
         transaction.setCustomAnimations(
             R.anim.slide_in_right,
             R.anim.slide_out_left,
@@ -34,6 +35,7 @@ class Home_fragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+
 
         //연극
         homefragment_A000.setOnClickListener {

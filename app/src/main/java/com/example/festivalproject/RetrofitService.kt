@@ -24,6 +24,8 @@ interface RetrofitService {
            @Query("from")
            from: String,
            @Query("to")
-           to: String
+           to: String,
+           @Query("sido")
+           sido:String?
     ):Call<Festival>
 }

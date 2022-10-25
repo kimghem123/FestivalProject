@@ -30,8 +30,11 @@ class User_fragment : Fragment() {
 }
 
 fun logout(context: Context){
-    val userfragmentmodel:UserFragmentModel = UserFragmentModel()
-    userfragmentmodel.logout(context)
+    val sp = context.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+    val editor = sp.edit()
+    editor.remove("userId")
+    editor.remove("userPassword")
+    editor.commit()
     val intent = Intent(context,MainActivity::class.java)
     context.startActivity(intent)
 }

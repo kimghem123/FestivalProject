@@ -1,6 +1,7 @@
 package com.example.festivalproject.RegisterPackage
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -14,11 +15,15 @@ import androidx.core.widget.doOnTextChanged
 import com.example.festivalproject.LoginPackage.LoginActivity
 import com.example.festivalproject.R
 import com.example.festivalproject.Room.UserProfileEntity
+import com.example.festivalproject.UserDatabase
 import com.github.razir.progressbutton.attachTextChangeAnimator
 import com.github.razir.progressbutton.bindProgressButton
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 
 class RegisterActivity : AppCompatActivity() {
@@ -59,7 +64,6 @@ class RegisterActivity : AppCompatActivity() {
         register_registerBtn.setOnClickListener {
             var isChecked = register_radioGroup.checkedRadioButtonId
             val radioButton: RadioButton = findViewById(isChecked)
-            val registerModel: RegisterModel = RegisterModel() //변수명 변경
 
             register_registerBtn.showProgress {
                 buttonTextRes = R.string.loading
@@ -72,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
                 register_phoneNum.text.toString(),
                 register_email.text.toString()
             )
-            registerModel.signUpNewUser(
+            signUpNewUser(
                 newUser,
                 this
             )
@@ -81,8 +85,6 @@ class RegisterActivity : AppCompatActivity() {
                 { register_registerBtn.hideProgress(R.string.success) },
                 2000
             )
-
-            //userProfileModel.checkUser(this)
 
             Handler(Looper.getMainLooper()).postDelayed(
                 { registerCompleteButton(this@RegisterActivity) },
@@ -93,6 +95,16 @@ class RegisterActivity : AppCompatActivity() {
 
 }
 
+fun signUpNewUser(
+    user: UserProfileEntity,
+    context: Context
+) {
+    val db = UserDatabase.getInstance(context.applicationContext)
+    CoroutineScope(Dispatchers.IO).launch {
+        db!!.userDao().insert(user)
+    }
+}
+
 fun registerCompleteButton(activity: Activity) {
 
     val intent = Intent(activity, LoginActivity::class.java)
@@ -100,5 +112,4 @@ fun registerCompleteButton(activity: Activity) {
     activity.finish()
 }
 
-//db에 데이터 넣기
 //추가기능 전화번호 인증
