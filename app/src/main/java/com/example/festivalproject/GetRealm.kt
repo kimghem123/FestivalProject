@@ -8,7 +8,7 @@ import retrofit2.http.Header
 import java.net.URL
 
 @Xml(name = "response")
-data class Festival(
+data class GetRealm(
     @Element(name = "msgBody")
     val msgBody: MsgBody,
 )

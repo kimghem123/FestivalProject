@@ -1,5 +1,6 @@
 package com.example.festivalproject.HomePackage
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,6 +23,12 @@ class Home_fragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val sp = this.requireActivity().getSharedPreferences("sortArea", Context.MODE_PRIVATE)
+        val editor = sp.edit()
+        editor.remove("sortArea")
+        editor.commit()
+
         val transaction: FragmentTransaction = this.requireActivity().supportFragmentManager.beginTransaction()
         transaction.setCustomAnimations(
             R.anim.slide_in_right,

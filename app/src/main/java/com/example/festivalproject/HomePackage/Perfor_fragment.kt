@@ -7,9 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -18,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
-import com.example.festivalproject.Festival
+import com.example.festivalproject.GetRealm
 import com.example.festivalproject.MasterApplication
 import com.example.festivalproject.R
 import com.orhanobut.dialogplus.DialogPlus
@@ -36,7 +34,7 @@ class Perfor_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_perfor_fragment, container, false)
-
+        Log.d("life", "create")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,16 +50,16 @@ class Perfor_fragment : Fragment() {
         val glide: RequestManager = Glide.with(activity)
 
         val transaction: FragmentTransaction =
-            this.requireActivity().supportFragmentManager.beginTransaction()
-        transaction.setCustomAnimations(
-            R.anim.slide_in_right,
-            R.anim.slide_out_left,
-            R.anim.slide_in_left,
-            R.anim.slide_out_right
-        )
+            this.requireActivity().supportFragmentManager.beginTransaction().setCustomAnimations(
+                R.anim.slide_in_right,
+                R.anim.slide_out_left,
+                R.anim.slide_in_left,
+                R.anim.slide_out_right
+            )
 
         val sp = activity.getSharedPreferences("sortArea", Context.MODE_PRIVATE)
         val sortArea = sp.getString("sortArea", null)
+
         if (sortArea == "전체")
             getList(activity, realm, perfor_recycler, perfor_nodata, glide, null, transaction)
         else {
@@ -125,13 +123,13 @@ fun getList(
         "1",
         realm,
         "1",
-        "20",
+        "10",
         "20170101",
         "20181231",
         sido
     )
-        .enqueue(object : Callback<Festival> {
-            override fun onResponse(call: Call<Festival>, response: Response<Festival>) {
+        .enqueue(object : Callback<GetRealm> {
+            override fun onResponse(call: Call<GetRealm>, response: Response<GetRealm>) {
                 if (response.isSuccessful) {
                     perfor_recycler.isVisible = true
                     perfor_nodata.isGone = true
@@ -148,7 +146,7 @@ fun getList(
                 }
             }
 
-            override fun onFailure(call: Call<Festival>, t: Throwable) {
+            override fun onFailure(call: Call<GetRealm>, t: Throwable) {
                 perfor_recycler.isGone = true
                 perfor_nodata.isVisible = true
                 Log.d("test1", t.toString())

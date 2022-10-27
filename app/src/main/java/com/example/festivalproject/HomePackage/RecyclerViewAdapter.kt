@@ -1,6 +1,7 @@
 package com.example.festivalproject.HomePackage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.example.festivalproject.Festival
+import com.example.festivalproject.GetRealm
 import com.example.festivalproject.R
+import kotlinx.android.synthetic.main.perfor_item_view.view.*
 
 class RecyclerViewAdapter(
-    val itemList: Festival,
+    val itemList: GetRealm,
     val inflater: LayoutInflater,
     val glide: RequestManager,
     val transaction: FragmentTransaction
@@ -28,29 +30,24 @@ class RecyclerViewAdapter(
         val image: ImageView
 
         init {
-            title = itemView.findViewById(R.id.perfor_title)
-            place = itemView.findViewById(R.id.perfor_place)
-            date = itemView.findViewById(R.id.perfor_date)
-            image = itemView.findViewById(R.id.perfor_image)
+            title = itemView.perfor_title
+            place = itemView.perfor_place
+            date = itemView.perfor_date
+            image = itemView.perfor_image
 
             itemView.setOnClickListener {
-                //val position: Int = absoluteAdapterPosition
-                transaction.replace(R.id.home_linearlayout, DetailPerfor_Fragment())
+                val position: Int = absoluteAdapterPosition
+                val detailperforFragment: Fragment = DetailPerfor_Fragment()
+                val bundle: Bundle = Bundle()
+                val detailCode = itemList.msgBody.perforList.get(position).seq
+                Log.d("arg",""+position)
+                Log.d("arg",""+detailCode)
+                bundle.putString("detailCode", detailCode)
+                detailperforFragment.arguments = bundle
+                transaction.replace(R.id.home_linearlayout, detailperforFragment)
                     .addToBackStack(null)
                     .commit()
-                //detailPerforFragmentChanger(transaction/*,itemList.msgBody.perforList.get(position).seq!!*/)
             }
-
-        }
-
-        private fun detailPerforFragmentChanger(transaction: FragmentTransaction) {
-            /*val detailperforFragment: Fragment = DetailPerfor_Fragment()
-            val bundle: Bundle = Bundle()
-            bundle.putString("detailCode", detailCode)
-            detailperforFragment.arguments = bundle*/
-            transaction.add(R.id.perfor_main, DetailPerfor_Fragment())
-                .addToBackStack(null)
-                .commit()
         }
     }
 

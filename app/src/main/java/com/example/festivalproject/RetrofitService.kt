@@ -2,7 +2,6 @@ package com.example.festivalproject
 
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RetrofitService {
@@ -27,5 +26,13 @@ interface RetrofitService {
            to: String,
            @Query("sido")
            sido:String?
-    ):Call<Festival>
+    ):Call<GetRealm>
+
+        @GET("d/")
+        fun getBySeq(
+           @Query("serviceKey", encoded = true)
+           serviceKey : String,
+           @Query("seq")
+           seq:String
+        ):Call<GetSeq>
 }
