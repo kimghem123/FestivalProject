@@ -39,6 +39,9 @@ data class PerforList(
     @PropertyElement(name = "endDate")
     var endDate: String?,
 
+    @PropertyElement(name = "realmName")
+    var realmName: String?,
+
     @PropertyElement(name = "place")
     var place: String?,
 
@@ -47,6 +50,6 @@ data class PerforList(
 
     @PropertyElement(name = "thumbnail")
     var thumbnail: String?,
-){
-    constructor():this (null,null,null,null,null,null,null)
+) {
+    constructor() : this(null, null, null,null, null, null, null, null)
 }

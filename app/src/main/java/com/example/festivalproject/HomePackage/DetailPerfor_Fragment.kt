@@ -71,16 +71,6 @@ class DetailPerfor_Fragment : Fragment() {
 
         Log.d("arg", seq)
     }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("tran", "pause")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("tran", "des")
-    }
 }
 
 fun getInfo(
@@ -100,13 +90,13 @@ fun getInfo(
                 val info = response.body()
                 val date =
                     info!!.msgBody.perforInfo.startDate + " ~ " + info!!.msgBody.perforInfo.endDate
+                val decode = info.msgBody.perforInfo.title!!.replace("&amp;lt;", "<")
+                    .replace("&amp;gt;", ">")
                 activity.apply {
-                    detail_title.setText(info!!.msgBody.perforInfo.title)
+                    detail_title.setText(decode)
                     detail_date.setText(date)
                     detail_addr.setText(info.msgBody.perforInfo.placeAddr)
                     detail_price.setText(info.msgBody.perforInfo.price)
-                    //detail_url.setText(info.msgBody.perforInfo.url)
-                    //detail_phone.setText(info.msgBody.perforInfo.phone)
                     detail_phone.setOnClickListener {
                         Log.d("phone",""+info.msgBody.perforInfo.phone)
                     }

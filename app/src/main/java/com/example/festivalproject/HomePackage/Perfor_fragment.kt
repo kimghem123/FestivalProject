@@ -44,6 +44,9 @@ class Perfor_fragment : Fragment() {
         val list = arrayOf<String>("전체", "서울", "경기", "인천", "대구", "광주", "대전", "울산")
         val activity = requireActivity()
         val realm = arguments?.getString("realm") as String
+        val realmName = arguments?.getString("realmName") as String
+
+
 
         val adapter = DialogAdapter(activity, list)
 
@@ -58,12 +61,49 @@ class Perfor_fragment : Fragment() {
             )
 
         val sp = activity.getSharedPreferences("sortArea", Context.MODE_PRIVATE)
+        val sp2 = activity.getSharedPreferences("sortName",Context.MODE_PRIVATE)
         val sortArea = sp.getString("sortArea", null)
+        val sortName = sp2.getString("sortName",null)
 
-        if (sortArea == "전체")
-            getList(activity, realm, perfor_recycler, perfor_nodata, glide, null, transaction)
-        else {
-            getList(activity, realm, perfor_recycler, perfor_nodata, glide, sortArea, transaction)
+        perfor_title.setText(realmName)
+
+        if (sortArea == "전체"&&sortName.equals(null))
+            getList(activity, realm, "1", perfor_recycler, perfor_nodata, glide, null, transaction)
+        else if(sortArea == "전체"&&sortName.equals("true")){
+            getList(
+                activity,
+                realm,
+                "2",
+                perfor_recycler,
+                perfor_nodata,
+                glide,
+                null,
+                transaction
+            )
+        }
+        else if (sortArea != "전체"&&sortName.equals(null)){
+            getList(
+                activity,
+                realm,
+                "1",
+                perfor_recycler,
+                perfor_nodata,
+                glide,
+                sortArea,
+                transaction
+            )
+        }
+        else if (sortArea != "전체"&&sortName.equals("true")){
+            getList(
+                activity,
+                realm,
+                "2",
+                perfor_recycler,
+                perfor_nodata,
+                glide,
+                sortArea,
+                transaction
+            )
         }
 
         perfor_sort_byPlace.setOnClickListener {
@@ -80,6 +120,7 @@ class Perfor_fragment : Fragment() {
                         getList(
                             activity,
                             realm,
+                            "1",
                             perfor_recycler,
                             perfor_nodata,
                             glide,
@@ -90,6 +131,7 @@ class Perfor_fragment : Fragment() {
                         getList(
                             activity,
                             realm,
+                            "1",
                             perfor_recycler,
                             perfor_nodata,
                             glide,
@@ -104,13 +146,78 @@ class Perfor_fragment : Fragment() {
                 .create()
             dialog.show()
         }
+        perfor_sort_byName.setOnClickListener {
+            val editor = sp2.edit()
+            editor.putString("sortName","true")
+            editor.commit()
+            val sortArea = sp.getString("sortArea",null)
+            if (sortArea.equals("전체")) {
+                getList(
+                    activity,
+                    realm,
+                    "2",
+                    perfor_recycler,
+                    perfor_nodata,
+                    glide,
+                    null,
+                    transaction
+                )
+                Log.d("name", ""+sortArea)
+            } else {
+                getList(
+                    activity,
+                    realm,
+                    "2",
+                    perfor_recycler,
+                    perfor_nodata,
+                    glide,
+                    sortArea,
+                    transaction
+                )
+                Log.d("name", "" + sortArea)
+            }
+        }
+        perfor_sort_byDate.setOnClickListener {
+            val sortArea = sp.getString("sortArea", null)
+            val editor = sp2.edit()
+            editor.remove("sortName")
+            editor.commit()
+            if (sortArea == "전체")
+                getList(activity, realm, "1", perfor_recycler, perfor_nodata, glide, null, transaction)
+            else if (sortArea != "전체"){
+                getList(
+                    activity,
+                    realm,
+                    "1",
+                    perfor_recycler,
+                    perfor_nodata,
+                    glide,
+                    sortArea,
+                    transaction
+                )
+            }
+        }
+        perfor_back.setOnClickListener {
+            val fragmentManager = activity.supportFragmentManager
+            fragmentManager.beginTransaction().remove(Perfor_fragment()).commit()
+            fragmentManager.popBackStack()
+        }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        val sp = this.requireActivity().getSharedPreferences("sortName",Context.MODE_PRIVATE)
+        val editor = sp.edit()
+        editor.remove("sortName")
+        editor.commit()
+    }
 }
+
 
 fun getList(
     activity: Activity,
     realm: String,
+    sortStdr: String,
     perfor_recycler: RecyclerView,
     perfor_nodata: LinearLayout,
     glide: RequestManager,
@@ -120,7 +227,7 @@ fun getList(
     (activity.application as MasterApplication).service.getByRealm(
         activity.getString(R.string.serviceKey),
         "1",
-        "1",
+        sortStdr,
         realm,
         "1",
         "10",
