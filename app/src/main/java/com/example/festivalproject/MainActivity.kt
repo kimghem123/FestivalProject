@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
         val sp = getSharedPreferences("login_sp", Context.MODE_PRIVATE)
         val editor = sp.edit()
         val userId = sp.getString("userId",null)
-        if(userId != null){
+        val flag = sp.getBoolean("flag",false)
+        if(userId != null&&flag == true){
             startActivity(Intent(this@MainActivity, HomeActivity::class.java))
             finish()
         }

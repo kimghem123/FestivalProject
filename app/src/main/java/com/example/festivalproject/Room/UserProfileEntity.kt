@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class UserProfileEntity(
     var userId: String?,
     var userPassword: String?,
+    var userNickName:String?,
     var userSex: String?,
     var userPhoneNum: String?,
     var userEmail: String?

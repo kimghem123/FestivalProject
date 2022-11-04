@@ -10,7 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.festivalproject.MainActivity
 import com.example.festivalproject.R
+import com.example.festivalproject.Room.UserProfile
+import com.example.festivalproject.Room.UserProfileEntity
+import com.example.festivalproject.UserDatabase
 import kotlinx.android.synthetic.main.fragment_user_fragment3.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class User_fragment : Fragment() {
 
@@ -22,14 +28,33 @@ class User_fragment : Fragment() {
         return inflater.inflate(R.layout.fragment_user_fragment3, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val context = this.activity as Activity
+        val context = this.requireActivity()
+
+        val sp = context.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+        val id = sp.getString("userId",null).toString()
+
+        getUserNickName(id,context)
+
         user_logout.setOnClickListener {
             logout(context)
         }
     }
 }
 
-fun logout(context: Context){
+fun getUserNickName(
+    id: String,
+    context: Activity
+) {
+    val db = UserDatabase.getInstance(context.applicationContext)
+    CoroutineScope(Dispatchers.IO).launch {
+        var nickName = db!!.userDao().getNickName(id)
+        val userProfile = UserProfile()
+        userProfile.userNickName = nickName
+        context.user_nickName.setText(userProfile.getterNickName())
+    }
+}
+
+fun logout(context: Activity){
     val sp = context.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
     val editor = sp.edit()
     editor.remove("userId")

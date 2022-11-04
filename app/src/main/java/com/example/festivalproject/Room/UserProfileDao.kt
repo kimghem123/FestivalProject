@@ -15,6 +15,9 @@ interface UserProfileDao {
     suspend fun getAll(): List<UserProfileEntity>
 
     @Query("SELECT userPassword FROM userProfile WHERE userId = :id")
-    suspend fun login(id:String): String?
+    suspend fun login(id:String?): String?
+
+    @Query("SELECT userNickName FROM userProfile WHERE userID = :id")
+    suspend fun getNickName(id:String):String?
 
 }

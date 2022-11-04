@@ -7,17 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
-import com.example.festivalproject.GetRealm
 import com.example.festivalproject.GetSeq
 import com.example.festivalproject.MasterApplication
 import com.example.festivalproject.R
@@ -38,17 +29,15 @@ class DetailPerfor_Fragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail_perfor_, container, false)
 
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val seq = arguments?.getString("detailCode") as String
+        val perforDetailInfo = PerforDetailInfo()
+        perforDetailInfo.seq = arguments?.getString("detailCode")
         val glide: RequestManager = Glide.with(this.requireActivity())
-
         val summaryFragment: Fragment = DetailPerfor_Summary_Fragment()
         val contentsFragment: Fragment = DetailPerfor_Contents_Fragment()
 
-        getInfo(this.requireActivity(), glide, summaryFragment, contentsFragment, seq)
-
+        getInfo(this.requireActivity(), glide, summaryFragment, contentsFragment,perforDetailInfo)
         detail_tab.addTab(detail_tab.newTab().setText("개요"))
         detail_tab.addTab(detail_tab.newTab().setText("상세내용"))
 
@@ -69,43 +58,49 @@ class DetailPerfor_Fragment : Fragment() {
         detail_viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(detail_tab))
 
 
-        Log.d("arg", seq)
+        Log.d("arg", perforDetailInfo.getDetailSeq()!!)
     }
 }
-
 fun getInfo(
     activity: Activity,
     glide: RequestManager,
     summaryFragment: Fragment,
     contentsFragment: Fragment,
-    seq: String
+    perforDetailInfo: PerforDetailInfo
 ) {
     (activity.application as MasterApplication).service.getBySeq(
         activity.getString(R.string.serviceKey),
-        seq
+        perforDetailInfo.getDetailSeq()!!
     ).enqueue(object : Callback<GetSeq> {
         override fun onResponse(call: Call<GetSeq>, response: Response<GetSeq>) {
             if (response.isSuccessful) {
                 Log.d("seq", "" + response.body()!!.msgBody.perforInfo.area)
                 val info = response.body()
-                val date =
-                    info!!.msgBody.perforInfo.startDate + " ~ " + info!!.msgBody.perforInfo.endDate
-                val decode = info.msgBody.perforInfo.title!!.replace("&amp;lt;", "<")
-                    .replace("&amp;gt;", ">")
-                activity.apply {
-                    detail_title.setText(decode)
-                    detail_date.setText(date)
-                    detail_addr.setText(info.msgBody.perforInfo.placeAddr)
-                    detail_price.setText(info.msgBody.perforInfo.price)
-                    detail_phone.setOnClickListener {
-                        Log.d("phone",""+info.msgBody.perforInfo.phone)
-                    }
-                    detail_contents.setText(info.msgBody.perforInfo.contents1)
+
+                perforDetailInfo.apply {
+                    detail_date_info =
+                        info!!.msgBody.perforInfo.startDate + " ~ " + info!!.msgBody.perforInfo.endDate
+                    detail_title_info = info.msgBody.perforInfo.title!!.replace("&amp;lt;", "<")
+                        .replace("&amp;gt;", ">")
+                    detail_addr_info = info.msgBody.perforInfo.placeAddr
+                    detail_price_info = info.msgBody.perforInfo.price
+                    detail_phone_info = info.msgBody.perforInfo.phone
+                    detail_contents_info = info.msgBody.perforInfo.contents1
+                    detail_img_info = info.msgBody.perforInfo.imgUrl
                 }
-                glide.load(info.msgBody.perforInfo.imgUrl).into(activity.detail_image)
+                activity.apply {
+                    detail_title.setText(perforDetailInfo.getDetailTitleInfo())
+                    detail_date.setText(perforDetailInfo.getDetailDateInfo())
+                    detail_addr.setText(perforDetailInfo.getDetailAddrInfo())
+                    detail_price.setText(perforDetailInfo.getDetailPriceInfo())
+                    detail_phone.setOnClickListener {
+                        Log.d("phone",""+perforDetailInfo.getDetailPhoneInfo())
+                    }
+                    detail_contents.setText(perforDetailInfo.getDetailContentsInfo())
+                }
+                glide.load(perforDetailInfo.getDetailImgInfo()).into(activity.detail_image)
             }
         }
-
         override fun onFailure(call: Call<GetSeq>, t: Throwable) {
             Log.d("seq", t.toString())
         }

@@ -14,6 +14,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import com.example.festivalproject.LoginPackage.LoginActivity
 import com.example.festivalproject.R
+import com.example.festivalproject.Room.UserProfile
 import com.example.festivalproject.Room.UserProfileEntity
 import com.example.festivalproject.UserDatabase
 import com.github.razir.progressbutton.attachTextChangeAnimator
@@ -49,6 +50,7 @@ class RegisterActivity : AppCompatActivity() {
                 && register_password2.text.toString().isNotEmpty()
                 && register_password1.text.toString() == register_password2.text.toString()
                 && register_phoneNum.text.toString().isNotEmpty()
+                && register_nickName.text.toString().isNotEmpty()
                 && register_email.text.toString().isNotEmpty()
             ) {
                 Log.d("register", "check")
@@ -69,15 +71,15 @@ class RegisterActivity : AppCompatActivity() {
                 buttonTextRes = R.string.loading
                 progressColor = Color.WHITE
             }
-            val newUser = UserProfileEntity(
+            val newUser = UserProfile(
                 register_id.text.toString(),
                 register_password1.text.toString(),
+                register_nickName.text.toString(),
                 radioButton.text.toString(),
                 register_phoneNum.text.toString(),
                 register_email.text.toString()
             )
-            signUpNewUser(
-                newUser,
+            newUser.signUpNewUser(
                 this
             )
 
@@ -93,16 +95,6 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-}
-
-fun signUpNewUser(
-    user: UserProfileEntity,
-    context: Context
-) {
-    val db = UserDatabase.getInstance(context.applicationContext)
-    CoroutineScope(Dispatchers.IO).launch {
-        db!!.userDao().insert(user)
-    }
 }
 
 fun registerCompleteButton(activity: Activity) {
