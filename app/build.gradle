@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'org.jetbrains.kotlin.kapt'
+
 }
 
 android {
@@ -87,4 +88,7 @@ dependencies {
 
     //dialog
     implementation 'com.orhanobut:dialogplus:1.11@aar'
+
+    //room converter gson
+    implementation 'com.google.code.gson:gson:2.8.7'
 }

@@ -1,13 +1,13 @@
-package com.example.festivalproject.Room
+package com.example.festivalproject
 
 import android.content.Context
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.example.festivalproject.UserDatabase
+import com.example.festivalproject.Room.UserFavorite
+import com.example.festivalproject.Room.UserFavoriteEntity
+import com.example.festivalproject.Room.UserProfileEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.Serializable
+import java.util.ArrayList
 
 data class UserProfile(
     var userId: String? = null,
@@ -34,13 +34,22 @@ data class UserProfile(
         )
         val db = UserDatabase.getInstance(context.applicationContext)
         CoroutineScope(Dispatchers.IO).launch {
-            db!!.userDao().insert(userProfileEntity)
+            db!!.userProfileDao().insert(userProfileEntity)
+        }
+
+        val userFavoriteEntity = UserFavoriteEntity(
+            userId,
+            mutableListOf<String>()
+        )
+        val db2 = UserFavorite.getInstance(context.applicationContext)
+        CoroutineScope(Dispatchers.IO).launch {
+            db2!!.userFavoriteDao().insert(userFavoriteEntity)
         }
     }
 
     suspend fun loginCheck(context: Context): Boolean {
         val db = UserDatabase.getInstance(context.applicationContext)
-        val checkPassword = db!!.userDao().login(userId).toString()
+        val checkPassword = db!!.userProfileDao().login(userId).toString()
         if (userPassword.equals(checkPassword)) return true else return false
     }
 

@@ -1,6 +1,7 @@
 package com.example.festivalproject.HomePackage
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,10 +13,15 @@ import com.bumptech.glide.RequestManager
 import com.example.festivalproject.GetSeq
 import com.example.festivalproject.MasterApplication
 import com.example.festivalproject.R
+import com.example.festivalproject.Room.UserFavorite
+import com.example.festivalproject.Room.UserFavoriteEntity
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_detail_perfor_.*
 import kotlinx.android.synthetic.main.fragment_detail_perfor__contents_.*
 import kotlinx.android.synthetic.main.fragment_detail_perfor__summary_.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,15 +35,14 @@ class DetailPerfor_Fragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail_perfor_, container, false)
 
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val perforDetailInfo = PerforDetailInfo()
         perforDetailInfo.seq = arguments?.getString("detailCode")
         val glide: RequestManager = Glide.with(this.requireActivity())
-        val summaryFragment: Fragment = DetailPerfor_Summary_Fragment()
-        val contentsFragment: Fragment = DetailPerfor_Contents_Fragment()
 
-        getInfo(this.requireActivity(), glide, summaryFragment, contentsFragment,perforDetailInfo)
+        getInfo(this.requireActivity(), glide, perforDetailInfo)
         detail_tab.addTab(detail_tab.newTab().setText("개요"))
         detail_tab.addTab(detail_tab.newTab().setText("상세내용"))
 
@@ -57,15 +62,38 @@ class DetailPerfor_Fragment : Fragment() {
         })
         detail_viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(detail_tab))
 
+        detail_favorite.setOnClickListener {
+            val sp = this.requireActivity().getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+            val userId = sp.getString("userId", null)
+
+
+            val db2 = UserFavorite.getInstance(this.requireActivity().applicationContext)
+            CoroutineScope(Dispatchers.IO).launch {
+                val list = db2!!.userFavoriteDao().getFavorite(userId)
+                Log.d("tet",""+list)
+                val list2 = list!!.plus(perforDetailInfo.getDetailSeq()!!)
+                Log.d("tet", ""+list2)
+                db2!!.userFavoriteDao().addFavorite(list2, userId)
+            }
+
+        }
+        detail_favoriteTest.setOnClickListener {
+            val sp = this.requireActivity().getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+            val userId = sp.getString("userId", null)
+            val db2 = UserFavorite.getInstance(this.requireActivity().applicationContext)
+            CoroutineScope(Dispatchers.IO).launch {
+                val list = db2!!.userFavoriteDao().getFavorite(userId)
+                Log.d("tet", "" + list)
+            }
+        }
 
         Log.d("arg", perforDetailInfo.getDetailSeq()!!)
     }
 }
+
 fun getInfo(
     activity: Activity,
     glide: RequestManager,
-    summaryFragment: Fragment,
-    contentsFragment: Fragment,
     perforDetailInfo: PerforDetailInfo
 ) {
     (activity.application as MasterApplication).service.getBySeq(
@@ -94,13 +122,14 @@ fun getInfo(
                     detail_addr.setText(perforDetailInfo.getDetailAddrInfo())
                     detail_price.setText(perforDetailInfo.getDetailPriceInfo())
                     detail_phone.setOnClickListener {
-                        Log.d("phone",""+perforDetailInfo.getDetailPhoneInfo())
+                        Log.d("phone", "" + perforDetailInfo.getDetailPhoneInfo())
                     }
                     detail_contents.setText(perforDetailInfo.getDetailContentsInfo())
                 }
                 glide.load(perforDetailInfo.getDetailImgInfo()).into(activity.detail_image)
             }
         }
+
         override fun onFailure(call: Call<GetSeq>, t: Throwable) {
             Log.d("seq", t.toString())
         }

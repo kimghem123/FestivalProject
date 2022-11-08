@@ -9,7 +9,7 @@ import android.util.Log
 import com.example.festivalproject.HomePackage.HomeActivity
 import com.example.festivalproject.R
 import com.example.festivalproject.RegisterPackage.RegisterActivity
-import com.example.festivalproject.Room.UserProfile
+import com.example.festivalproject.UserProfile
 import com.example.festivalproject.UserDatabase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.CoroutineScope
@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
 
 suspend fun deleteAll(context: Context) {
     val db = UserDatabase.getInstance(context.applicationContext)
-        db!!.userDao().deleteAll()
+        db!!.userProfileDao().deleteAll()
 }
 
 fun registerButtonClick(activity: Activity) {

@@ -10,8 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.festivalproject.MainActivity
 import com.example.festivalproject.R
-import com.example.festivalproject.Room.UserProfile
-import com.example.festivalproject.Room.UserProfileEntity
+import com.example.festivalproject.UserProfile
 import com.example.festivalproject.UserDatabase
 import kotlinx.android.synthetic.main.fragment_user_fragment3.*
 import kotlinx.coroutines.CoroutineScope
@@ -47,7 +46,7 @@ fun getUserNickName(
 ) {
     val db = UserDatabase.getInstance(context.applicationContext)
     CoroutineScope(Dispatchers.IO).launch {
-        var nickName = db!!.userDao().getNickName(id)
+        var nickName = db!!.userProfileDao().getNickName(id)
         val userProfile = UserProfile()
         userProfile.userNickName = nickName
         context.user_nickName.setText(userProfile.getterNickName())

@@ -11,7 +11,7 @@ import com.example.festivalproject.Room.UserProfileEntity
 
 @Database(entities = [UserProfileEntity::class], version = 2)
 abstract class UserDatabase : RoomDatabase(){
-    abstract fun userDao(): UserProfileDao
+    abstract fun userProfileDao(): UserProfileDao
 
     companion object{
         private var instance:UserDatabase? = null
