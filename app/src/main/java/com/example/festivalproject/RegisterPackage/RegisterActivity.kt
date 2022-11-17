@@ -1,6 +1,7 @@
 package com.example.festivalproject.RegisterPackage
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -13,13 +14,19 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import com.example.festivalproject.LoginPackage.LoginActivity
 import com.example.festivalproject.R
+import com.example.festivalproject.Room.UserFavEntity
 import com.example.festivalproject.UserProfile
 import com.example.festivalproject.Room.UserProfileEntity
+import com.example.festivalproject.UserDatabase
+import com.example.festivalproject.UserFavDatabase
 import com.github.razir.progressbutton.attachTextChangeAnimator
 import com.github.razir.progressbutton.bindProgressButton
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 
 class RegisterActivity : AppCompatActivity() {
@@ -66,16 +73,18 @@ class RegisterActivity : AppCompatActivity() {
                 buttonTextRes = R.string.loading
                 progressColor = Color.WHITE
             }
-            val newUser = UserProfile(
-                register_id.text.toString(),
-                register_password1.text.toString(),
-                register_nickName.text.toString(),
-                radioButton.text.toString(),
-                register_phoneNum.text.toString(),
-                register_email.text.toString()
-            )
-            newUser.signUpNewUser(
-                this
+            val newUser = UserProfile()
+                .apply {
+                setterUserId(register_id.text.toString())
+                setterPassword(register_password1.text.toString())
+                setterNickName(register_nickName.text.toString())
+                setterSex(radioButton.text.toString())
+                setterPhoneNum(register_phoneNum.text.toString())
+                setterEmail(register_email.text.toString())
+            }
+
+            signUpNewUser(
+                newUser,this
             )
 
             Handler(Looper.getMainLooper()).postDelayed(
@@ -98,5 +107,33 @@ fun registerCompleteButton(activity: Activity) {
     activity.startActivity(intent)
     activity.finish()
 }
+
+fun signUpNewUser(
+    user: UserProfile,
+    context: Context
+) {
+    val userProfileEntity = UserProfileEntity(
+        user.getterUserId(),
+        user.getterPassword(),
+        user.getterNickName(),
+        user.getterSex(),
+        user.getterPhoneNum(),
+        user.getterEmail()
+    )
+
+    val list = mutableListOf<String>()
+    val userFavEntity = UserFavEntity(user.getterUserId(),list)
+
+
+    val db = UserDatabase.getInstance(context.applicationContext)
+    val db2 = UserFavDatabase.getInstance(context.applicationContext)
+    CoroutineScope(Dispatchers.IO).launch {
+        db!!.userProfileDao().insert(userProfileEntity)
+        db2!!.userFavDao().insert(userFavEntity)
+    }
+    Log.d("hander","")
+}
+
+
 
 //추가기능 전화번호 인증

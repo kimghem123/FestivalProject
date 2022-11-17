@@ -4,8 +4,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'org.jetbrains.kotlin.kapt'
-
 }
+
 
 android {
     compileSdk 32
@@ -91,4 +91,11 @@ dependencies {
 
     //room converter gson
     implementation 'com.google.code.gson:gson:2.8.7'
+
+    //Moshi
+    implementation 'com.squareup.moshi:moshi:1.9.3'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
+
+    //Json
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
 }

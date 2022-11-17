@@ -2,6 +2,7 @@ package com.example.festivalproject.HomePackage
 
 import android.app.Activity
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,8 +14,7 @@ import com.bumptech.glide.RequestManager
 import com.example.festivalproject.GetSeq
 import com.example.festivalproject.MasterApplication
 import com.example.festivalproject.R
-import com.example.festivalproject.Room.UserFavorite
-import com.example.festivalproject.Room.UserFavoriteEntity
+import com.example.festivalproject.UserFavDatabase
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_detail_perfor_.*
 import kotlinx.android.synthetic.main.fragment_detail_perfor__contents_.*
@@ -62,29 +62,23 @@ class DetailPerfor_Fragment : Fragment() {
         })
         detail_viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(detail_tab))
 
+        var test = mutableListOf<String>("123","456")
         detail_favorite.setOnClickListener {
-            val sp = this.requireActivity().getSharedPreferences("login_sp", Context.MODE_PRIVATE)
-            val userId = sp.getString("userId", null)
+            val sp = this.requireActivity().getSharedPreferences("login_sp",Context.MODE_PRIVATE)
+            val userId = sp.getString("userId",null)
+            val db = UserFavDatabase.getInstance(this.requireActivity().applicationContext)
 
-
-            val db2 = UserFavorite.getInstance(this.requireActivity().applicationContext)
             CoroutineScope(Dispatchers.IO).launch {
-                val list = db2!!.userFavoriteDao().getFavorite(userId)
-                Log.d("tet",""+list)
-                val list2 = list!!.plus(perforDetailInfo.getDetailSeq()!!)
-                Log.d("tet", ""+list2)
-                db2!!.userFavoriteDao().addFavorite(list2, userId)
+                val list = db!!.userFavDao().getfavList(userId!!)
+                //list.add(arguments?.getString("detailCode").toString())
+                list.add("789")
+                Log.d("tat", ""+list)
+                db!!.userFavDao().setfavList(list,userId!!)
             }
-
         }
+
         detail_favoriteTest.setOnClickListener {
-            val sp = this.requireActivity().getSharedPreferences("login_sp", Context.MODE_PRIVATE)
-            val userId = sp.getString("userId", null)
-            val db2 = UserFavorite.getInstance(this.requireActivity().applicationContext)
-            CoroutineScope(Dispatchers.IO).launch {
-                val list = db2!!.userFavoriteDao().getFavorite(userId)
-                Log.d("tet", "" + list)
-            }
+
         }
 
         Log.d("arg", perforDetailInfo.getDetailSeq()!!)

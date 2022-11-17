@@ -28,12 +28,12 @@ class LoginActivity : AppCompatActivity() {
                 userPassword = login_password.text.toString()
             }
             CoroutineScope(Dispatchers.IO).launch {
-                val result = user.loginCheck(this@LoginActivity)
+                val result = loginCheck(user,this@LoginActivity)
                 if(result){
                     if (login_autoLogin.isChecked) {
-                        user.autoLogin(true, this@LoginActivity)
+                        autoLogin(user,true, this@LoginActivity)
                     }
-                    else user.autoLogin(false, this@LoginActivity)
+                    else autoLogin(user,false, this@LoginActivity)
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     finish()
                 }
@@ -51,6 +51,20 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+}
+
+suspend fun loginCheck(user:UserProfile,context: Context): Boolean {
+    val db = UserDatabase.getInstance(context.applicationContext)
+    val checkPassword = db!!.userProfileDao().login(user.getterUserId()).toString()
+    if (user.getterPassword().equals(checkPassword)) return true else return false
+}
+
+fun autoLogin(user:UserProfile,flag: Boolean, context: Context) {
+    val sp = context.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+    val editor = sp.edit()
+    editor.putString("userId", user.getterUserId())
+    editor.putBoolean("flag", flag)
+    editor.commit()
 }
 
 suspend fun deleteAll(context: Context) {
