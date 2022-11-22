@@ -1,7 +1,6 @@
 package com.example.festivalproject.HomePackage
 
 import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -45,8 +44,8 @@ class Perfor_fragment : Fragment() {
         val activity = requireActivity()
 
         val perforInfo = PerforInfo()
-        perforInfo.realm = arguments?.getString("realm") as String
-        perforInfo.realmName = arguments?.getString("realmName") as String
+        perforInfo.setterRealm(arguments?.getString("realm") as String)
+        perforInfo.setterRealmName(arguments?.getString("realmName") as String)
 
         val adapter = DialogAdapter(activity, list)
 
@@ -59,11 +58,6 @@ class Perfor_fragment : Fragment() {
                 R.anim.slide_in_left,
                 R.anim.slide_out_right
             )
-
-        /*val sp = activity.getSharedPreferences("sortArea", Context.MODE_PRIVATE)
-        val sp2 = activity.getSharedPreferences("sortName",Context.MODE_PRIVATE)
-        val sortArea = sp.getString("sortArea", null)
-        val sortName = sp2.getString("sortName",null)*/
 
         perfor_title.setText(perforInfo.getRealmNameInfo())
 

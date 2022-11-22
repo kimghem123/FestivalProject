@@ -23,6 +23,7 @@ import com.github.razir.progressbutton.attachTextChangeAnimator
 import com.github.razir.progressbutton.bindProgressButton
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -121,19 +122,13 @@ fun signUpNewUser(
         user.getterEmail()
     )
 
-    val list = mutableListOf<String>()
+    val list = listOf<String>()
     val userFavEntity = UserFavEntity(user.getterUserId(),list)
 
-
     val db = UserDatabase.getInstance(context.applicationContext)
-    val db2 = UserFavDatabase.getInstance(context.applicationContext)
+    val db2 = UserFavDatabase.getInstance(context.applicationContext, gson = Gson())
     CoroutineScope(Dispatchers.IO).launch {
         db!!.userProfileDao().insert(userProfileEntity)
         db2!!.userFavDao().insert(userFavEntity)
     }
-    Log.d("hander","")
 }
-
-
-
-//추가기능 전화번호 인증

@@ -16,6 +16,7 @@ import com.example.festivalproject.MasterApplication
 import com.example.festivalproject.R
 import com.example.festivalproject.UserFavDatabase
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_detail_perfor_.*
 import kotlinx.android.synthetic.main.fragment_detail_perfor__contents_.*
 import kotlinx.android.synthetic.main.fragment_detail_perfor__summary_.*
@@ -39,7 +40,7 @@ class DetailPerfor_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val perforDetailInfo = PerforDetailInfo()
-        perforDetailInfo.seq = arguments?.getString("detailCode")
+        perforDetailInfo.setDetailSeq(arguments?.getString("detailCode").toString())
         val glide: RequestManager = Glide.with(this.requireActivity())
 
         getInfo(this.requireActivity(), glide, perforDetailInfo)
@@ -62,23 +63,24 @@ class DetailPerfor_Fragment : Fragment() {
         })
         detail_viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(detail_tab))
 
-        var test = mutableListOf<String>("123","456")
+
         detail_favorite.setOnClickListener {
             val sp = this.requireActivity().getSharedPreferences("login_sp",Context.MODE_PRIVATE)
             val userId = sp.getString("userId",null)
-            val db = UserFavDatabase.getInstance(this.requireActivity().applicationContext)
+            val db = UserFavDatabase.getInstance(this.requireActivity().applicationContext, gson = Gson())
 
             CoroutineScope(Dispatchers.IO).launch {
-                val list = db!!.userFavDao().getfavList(userId!!)
-                //list.add(arguments?.getString("detailCode").toString())
-                list.add("789")
-                Log.d("tat", ""+list)
-                db!!.userFavDao().setfavList(list,userId!!)
+                var list = db!!.userFavDao().getfavList(userId!!)
+                var list2 = Gson().fromJson(list, Array<String>::class.java).toMutableList()
+                if(list2.contains(perforDetailInfo.getDetailSeq())){
+                    list2.remove(perforDetailInfo.getDetailSeq())
+                }
+                else{
+                    list2.add(perforDetailInfo.getDetailSeq().toString())
+                }
+                db.userFavDao().setfavList(list2,userId)
+                Log.d("tet",""+list2)
             }
-        }
-
-        detail_favoriteTest.setOnClickListener {
-
         }
 
         Log.d("arg", perforDetailInfo.getDetailSeq()!!)
@@ -100,15 +102,14 @@ fun getInfo(
                 val info = response.body()
 
                 perforDetailInfo.apply {
-                    detail_date_info =
-                        info!!.msgBody.perforInfo.startDate + " ~ " + info!!.msgBody.perforInfo.endDate
-                    detail_title_info = info.msgBody.perforInfo.title!!.replace("&amp;lt;", "<")
-                        .replace("&amp;gt;", ">")
-                    detail_addr_info = info.msgBody.perforInfo.placeAddr
-                    detail_price_info = info.msgBody.perforInfo.price
-                    detail_phone_info = info.msgBody.perforInfo.phone
-                    detail_contents_info = info.msgBody.perforInfo.contents1
-                    detail_img_info = info.msgBody.perforInfo.imgUrl
+                    setDetailDateInfo(info!!.msgBody.perforInfo.startDate + " ~ " + info!!.msgBody.perforInfo.endDate)
+                    setDetailTitleInfo(info.msgBody.perforInfo.title!!.replace("&amp;lt;", "<")
+                        .replace("&amp;gt;", ">"))
+                    setDetailAddrInfo(info.msgBody.perforInfo.placeAddr.toString())
+                    setDetailPriceInfo(info.msgBody.perforInfo.price.toString())
+                    setDetailContentsInfo(info.msgBody.perforInfo.contents1.toString())
+                    setDetailPhoneInfo(info.msgBody.perforInfo.phone.toString())
+                    setDetailImgInfo(info.msgBody.perforInfo.imgUrl.toString())
                 }
                 activity.apply {
                     detail_title.setText(perforDetailInfo.getDetailTitleInfo())

@@ -24,6 +24,31 @@ data class PerforDetailInfo(
     var detail_img_info: String? = null,
     var seq:String? = null
 ) {
+    fun setDetailTitleInfo(detailTitleInfo:String){
+        detail_title_info = detailTitleInfo
+    }
+    fun setDetailDateInfo(detailDataInfo:String){
+        detail_date_info = detailDataInfo
+    }
+    fun setDetailAddrInfo(detailAddrInfo:String){
+        detail_addr_info = detailAddrInfo
+    }
+    fun setDetailPriceInfo(detailPriceInfo:String){
+        detail_price_info = detailPriceInfo
+    }
+    fun setDetailPhoneInfo(detailPhoneInfo:String){
+        detail_phone_info = detailPhoneInfo
+    }
+    fun setDetailContentsInfo(detailContentsInfo:String){
+        detail_contents_info = detailContentsInfo
+    }
+    fun setDetailImgInfo(detailImgInfo:String){
+        detail_img_info = detailImgInfo
+    }
+    fun setDetailSeq(detailSeq:String){
+        seq = detailSeq
+    }
+
     fun getDetailTitleInfo():String?{
         return detail_title_info
     }

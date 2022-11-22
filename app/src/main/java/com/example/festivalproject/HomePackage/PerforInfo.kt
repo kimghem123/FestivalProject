@@ -2,24 +2,11 @@ package com.example.festivalproject.HomePackage
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
-import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.RequestManager
-import com.example.festivalproject.GetRealm
-import com.example.festivalproject.MasterApplication
-import com.example.festivalproject.R
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 data class PerforInfo(
-    var realm:String? =null,
+    var realmCode:String? =null,
     var realmName:String? = null,
     var sortStdr: String? = null,
     var perfor_recycler: RecyclerView? = null,
@@ -27,8 +14,16 @@ data class PerforInfo(
     var sido: String? = null
 
 ) {
+    fun setterRealm(realm:String){
+        this.realmCode = realm
+    }
+
+    fun setterRealmName(realmName:String){
+        this.realmName = realmName
+    }
+
     fun getRealmInfo():String?{
-        return realm
+        return realmCode
     }
     fun getRealmNameInfo():String?{
         return realmName

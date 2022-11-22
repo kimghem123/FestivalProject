@@ -19,45 +19,59 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.sql.Types as Types
 
-@Database(entities = [UserFavEntity::class], version = 1)
-@TypeConverters(Converters::class)
+@Database(entities = [UserFavEntity::class], version = 2)
+@TypeConverters(
+    value = [
+        StringListTypeConverter::class
+    ]
+)
 abstract class UserFavDatabase : RoomDatabase(){
     abstract fun userFavDao(): UserFavDao
 
     companion object{
         private var instance:UserFavDatabase? = null
 
+        fun provideGson(): Gson {
+            return Gson()
+        }
+
         @Synchronized
-        fun getInstance(context: Context): UserFavDatabase?{
+        fun getInstance(context: Context,gson: Gson): UserFavDatabase?{
             if(instance == null){
                 synchronized(UserFavDatabase::class){
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         UserFavDatabase::class.java,
-                        "userFavoList"
+                        "userFavoritList"
                     )
+                        .addTypeConverter(StringListTypeConverter(gson))
                         .build()
                 }
             }
             return instance
         }
+
     }
 
 }
-/*class Converters {
-    @TypeConverter
-    fun jsonStringToList(value: String) = Gson().fromJson(value, Array<String>::class.java).toList()
+@ProvidedTypeConverter
+class StringListTypeConverter(private val gson: Gson) {
 
     @TypeConverter
-    fun listToJsonString(value: List<String>?): String = Gson().toJson(value)
+    fun listToJson(value: List<String>): String? {
+        return gson.toJson(value)
+    }
 
-
-}*/
-
+    @TypeConverter
+    fun jsonToList(value: String): List<String> {
+        return gson.fromJson(value, Array<String>::class.java).toList()
+    }
+}
+/*
 class Converters {
     @TypeConverter
     fun fromList(value : MutableList<String>) = Json.encodeToString(value)
 
     @TypeConverter
     fun toList(value: String) = Json.decodeFromString<MutableList<String>>(value)
-}
+}*/
