@@ -20,15 +20,13 @@
                     android:id="@+id/detail_image"
                     android:layout_width="match_parent"
                     android:layout_height="300dp" />
+
                 <Button
+                    android:id="@+id/detail_favorite"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:id="@+id/detail_favorite"/>
-                <Button
-                    android:layout_below="@+id/detail_favorite"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/detail_favoriteTest"/>
+                    android:background="#9A9A9A" />
+
             </RelativeLayout>
 
             <TextView

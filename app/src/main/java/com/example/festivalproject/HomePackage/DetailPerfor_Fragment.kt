@@ -3,6 +3,7 @@ package com.example.festivalproject.HomePackage
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -43,6 +44,22 @@ class DetailPerfor_Fragment : Fragment() {
         perforDetailInfo.setDetailSeq(arguments?.getString("detailCode").toString())
         val glide: RequestManager = Glide.with(this.requireActivity())
 
+        val sp = this.requireActivity().getSharedPreferences("login_sp",Context.MODE_PRIVATE)
+        val userId = sp.getString("userId",null)
+        val db = UserFavDatabase.getInstance(this.requireActivity().applicationContext, gson = Gson())
+        var favoriteFLag: Boolean
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val list = Gson().fromJson(db!!.userFavDao().getfavList(userId!!), Array<String>::class.java).toMutableList()
+            if(list.contains(perforDetailInfo.getDetailSeq())){
+                detail_favorite.setBackgroundColor(Color.RED)
+                favoriteFLag = false
+            }
+            else{
+                detail_favorite.setBackgroundColor(Color.GRAY)
+            }
+        }
+
         getInfo(this.requireActivity(), glide, perforDetailInfo)
         detail_tab.addTab(detail_tab.newTab().setText("개요"))
         detail_tab.addTab(detail_tab.newTab().setText("상세내용"))
@@ -65,18 +82,16 @@ class DetailPerfor_Fragment : Fragment() {
 
 
         detail_favorite.setOnClickListener {
-            val sp = this.requireActivity().getSharedPreferences("login_sp",Context.MODE_PRIVATE)
-            val userId = sp.getString("userId",null)
-            val db = UserFavDatabase.getInstance(this.requireActivity().applicationContext, gson = Gson())
-
             CoroutineScope(Dispatchers.IO).launch {
                 var list = db!!.userFavDao().getfavList(userId!!)
                 var list2 = Gson().fromJson(list, Array<String>::class.java).toMutableList()
                 if(list2.contains(perforDetailInfo.getDetailSeq())){
                     list2.remove(perforDetailInfo.getDetailSeq())
+                    detail_favorite.setBackgroundColor(Color.GRAY)
                 }
                 else{
                     list2.add(perforDetailInfo.getDetailSeq().toString())
+                    detail_favorite.setBackgroundColor(Color.RED)
                 }
                 db.userFavDao().setfavList(list2,userId)
                 Log.d("tet",""+list2)

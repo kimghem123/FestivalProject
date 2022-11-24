@@ -5,7 +5,7 @@ import android.content.Context
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 
-data class PerforInfo(
+data class PerforListInfo(
     var realmCode:String? =null,
     var realmName:String? = null,
     var sortStdr: String? = null,

@@ -43,9 +43,9 @@ class Perfor_fragment : Fragment() {
         val list = arrayOf<String>("전체", "서울", "경기", "인천", "대구", "광주", "대전", "울산")
         val activity = requireActivity()
 
-        val perforInfo = PerforInfo()
-        perforInfo.setterRealm(arguments?.getString("realm") as String)
-        perforInfo.setterRealmName(arguments?.getString("realmName") as String)
+        val perforListInfo = PerforListInfo()
+        perforListInfo.setterRealm(arguments?.getString("realm") as String)
+        perforListInfo.setterRealmName(arguments?.getString("realmName") as String)
 
         val adapter = DialogAdapter(activity, list)
 
@@ -59,14 +59,14 @@ class Perfor_fragment : Fragment() {
                 R.anim.slide_out_right
             )
 
-        perfor_title.setText(perforInfo.getRealmNameInfo())
+        perfor_title.setText(perforListInfo.getRealmNameInfo())
 
-        if (perforInfo.getSortArea(activity) == "전체"&&perforInfo.getSortName(activity).equals(null))
-            getList(activity, perforInfo.getRealmInfo()!!, "1", perfor_recycler, perfor_nodata, glide, null, transaction)
-        else if(perforInfo.getSortArea(activity) == "전체"&&perforInfo.getSortName(activity).equals("true")){
+        if (perforListInfo.getSortArea(activity) == "전체"&&perforListInfo.getSortName(activity).equals(null))
+            getList(activity, perforListInfo.getRealmInfo()!!, "1", perfor_recycler, perfor_nodata, glide, null, transaction)
+        else if(perforListInfo.getSortArea(activity) == "전체"&&perforListInfo.getSortName(activity).equals("true")){
             getList(
                 activity,
-                perforInfo.getRealmInfo()!!,
+                perforListInfo.getRealmInfo()!!,
                 "2",
                 perfor_recycler,
                 perfor_nodata,
@@ -75,27 +75,27 @@ class Perfor_fragment : Fragment() {
                 transaction
             )
         }
-        else if (perforInfo.getSortArea(activity) != "전체"&&perforInfo.getSortName(activity).equals(null)){
+        else if (perforListInfo.getSortArea(activity) != "전체"&&perforListInfo.getSortName(activity).equals(null)){
             getList(
                 activity,
-                perforInfo.getRealmInfo()!!,
+                perforListInfo.getRealmInfo()!!,
                 "1",
                 perfor_recycler,
                 perfor_nodata,
                 glide,
-                perforInfo.getSortArea(activity),
+                perforListInfo.getSortArea(activity),
                 transaction
             )
         }
-        else if (perforInfo.getSortArea(activity) != "전체"&&perforInfo.getSortName(activity).equals("true")){
+        else if (perforListInfo.getSortArea(activity) != "전체"&&perforListInfo.getSortName(activity).equals("true")){
             getList(
                 activity,
-                perforInfo.getRealmInfo()!!,
+                perforListInfo.getRealmInfo()!!,
                 "2",
                 perfor_recycler,
                 perfor_nodata,
                 glide,
-                perforInfo.getSortArea(activity),
+                perforListInfo.getSortArea(activity),
                 transaction
             )
         }
@@ -105,13 +105,13 @@ class Perfor_fragment : Fragment() {
                 .setAdapter(adapter)
                 .setOnItemClickListener { dialog, item, view, position ->
                     val textView = view.sort_area_name
-                    perforInfo.setSortArea(activity,textView.text.toString())
-                    perforInfo.removeSortName(activity)
+                    perforListInfo.setSortArea(activity,textView.text.toString())
+                    perforListInfo.removeSortName(activity)
                     dialog.dismiss()
                     if (textView.text.toString().equals("전체")) {
                         getList(
                             activity,
-                            perforInfo.getRealmInfo()!!,
+                            perforListInfo.getRealmInfo()!!,
                             "1",
                             perfor_recycler,
                             perfor_nodata,
@@ -122,7 +122,7 @@ class Perfor_fragment : Fragment() {
                     } else {
                         getList(
                             activity,
-                            perforInfo.getRealmInfo()!!,
+                            perforListInfo.getRealmInfo()!!,
                             "1",
                             perfor_recycler,
                             perfor_nodata,
@@ -139,11 +139,11 @@ class Perfor_fragment : Fragment() {
             dialog.show()
         }
         perfor_sort_byName.setOnClickListener {
-            perforInfo.setSortName(activity)
-            if (perforInfo.getSortArea(activity).equals("전체")) {
+            perforListInfo.setSortName(activity)
+            if (perforListInfo.getSortArea(activity).equals("전체")) {
                 getList(
                     activity,
-                    perforInfo.getRealmInfo()!!,
+                    perforListInfo.getRealmInfo()!!,
                     "2",
                     perfor_recycler,
                     perfor_nodata,
@@ -151,34 +151,34 @@ class Perfor_fragment : Fragment() {
                     null,
                     transaction
                 )
-                Log.d("name", ""+perforInfo.getSortArea(activity))
+                Log.d("name", ""+perforListInfo.getSortArea(activity))
             } else {
                 getList(
                     activity,
-                    perforInfo.getRealmInfo()!!,
+                    perforListInfo.getRealmInfo()!!,
                     "2",
                     perfor_recycler,
                     perfor_nodata,
                     glide,
-                    perforInfo.getSortArea(activity),
+                    perforListInfo.getSortArea(activity),
                     transaction
                 )
-                Log.d("name", "" + perforInfo.getSortArea(activity))
+                Log.d("name", "" + perforListInfo.getSortArea(activity))
             }
         }
         perfor_sort_byDate.setOnClickListener {
-            perforInfo.removeSortName(activity)
-            if (perforInfo.getSortArea(activity) == "전체")
-                getList(activity, perforInfo.getRealmInfo()!!, "1", perfor_recycler, perfor_nodata, glide, null, transaction)
-            else if (perforInfo.getSortArea(activity) != "전체"){
+            perforListInfo.removeSortName(activity)
+            if (perforListInfo.getSortArea(activity) == "전체")
+                getList(activity, perforListInfo.getRealmInfo()!!, "1", perfor_recycler, perfor_nodata, glide, null, transaction)
+            else if (perforListInfo.getSortArea(activity) != "전체"){
                 getList(
                     activity,
-                    perforInfo.getRealmInfo()!!,
+                    perforListInfo.getRealmInfo()!!,
                     "1",
                     perfor_recycler,
                     perfor_nodata,
                     glide,
-                    perforInfo.getSortArea(activity),
+                    perforListInfo.getSortArea(activity),
                     transaction
                 )
             }
@@ -191,8 +191,8 @@ class Perfor_fragment : Fragment() {
     }
 
     override fun onDestroy() {
-        val perforInfo = PerforInfo()
-        perforInfo.removeSortName(this.requireActivity())
+        val perforListInfo = PerforListInfo()
+        perforListInfo.removeSortName(this.requireActivity())
         super.onDestroy()
     }
 
