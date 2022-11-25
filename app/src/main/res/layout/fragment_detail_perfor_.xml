@@ -16,15 +16,27 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/detail_back"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:text="뒤로" />
                 <ImageView
                     android:id="@+id/detail_image"
                     android:layout_width="match_parent"
                     android:layout_height="300dp" />
 
                 <Button
+                    android:text="찜"
                     android:id="@+id/detail_favorite"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="#9A9A9A" />
 
             </RelativeLayout>

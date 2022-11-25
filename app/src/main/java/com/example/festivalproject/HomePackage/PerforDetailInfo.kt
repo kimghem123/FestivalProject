@@ -19,6 +19,7 @@ data class PerforDetailInfo(
     var detail_date_info: String? = null,
     var detail_addr_info: String? = null,
     var detail_price_info: String? = null,
+    var detail_url_info:String? = null,
     var detail_phone_info: String? = null,
     var detail_contents_info: String? = null,
     var detail_img_info: String? = null,
@@ -35,6 +36,9 @@ data class PerforDetailInfo(
     }
     fun setDetailPriceInfo(detailPriceInfo:String){
         detail_price_info = detailPriceInfo
+    }
+    fun setDetailUrlInfo(detailUrlInfo:String){
+        detail_url_info = detailUrlInfo
     }
     fun setDetailPhoneInfo(detailPhoneInfo:String){
         detail_phone_info = detailPhoneInfo
@@ -60,6 +64,9 @@ data class PerforDetailInfo(
     }
     fun getDetailPriceInfo():String?{
         return detail_price_info
+    }
+    fun getDetailUrlInfo():String?{
+        return detail_url_info
     }
     fun getDetailPhoneInfo():String?{
         return detail_phone_info

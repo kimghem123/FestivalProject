@@ -1,5 +1,7 @@
 package com.example.festivalproject.HomePackage
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,7 +23,8 @@ class RecyclerViewAdapter(
     val itemList: GetRealm,
     val inflater: LayoutInflater,
     val glide: RequestManager,
-    val transaction: FragmentTransaction
+    val transaction: FragmentTransaction,
+    val activity: Activity
 ) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView
@@ -43,6 +46,10 @@ class RecyclerViewAdapter(
                 Log.d("arg",""+position)
                 Log.d("arg",""+detailCode)
                 bundle.putString("detailCode", detailCode)
+                val seqSp = activity.getSharedPreferences("fragment", Context.MODE_PRIVATE)
+                val seqEditor = seqSp.edit()
+                seqEditor.putString("seq",detailCode)
+                seqEditor.commit()
                 detailperforFragment.arguments = bundle
                 transaction.replace(R.id.home_linearlayout, detailperforFragment)
                     .addToBackStack(null)

@@ -1,5 +1,7 @@
 package com.example.festivalproject.HomePackage
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,7 +24,8 @@ class UserFavRecyclerViewAdapter(
     val getSeqList: MutableList<GetSeq?>,
     val inflater: LayoutInflater,
     val glide: RequestManager,
-    val transaction: FragmentTransaction
+    val transaction: FragmentTransaction,
+    val activity: Activity
 ) : RecyclerView.Adapter<UserFavRecyclerViewAdapter.ViewHolder>() {
 
     fun addItem(getSeq:GetSeq?){
@@ -49,6 +52,10 @@ class UserFavRecyclerViewAdapter(
                 val bundle: Bundle = Bundle()
                 val detailCode = getSeqList.get(position)!!.msgBody.perforInfo.seq
                 bundle.putString("detailCode", detailCode)
+                val seqSp = activity.getSharedPreferences("fragment", Context.MODE_PRIVATE)
+                val seqEditor = seqSp.edit()
+                seqEditor.putString("seq",detailCode)
+                seqEditor.commit()
                 detailperforFragment.arguments = bundle
                 transaction.replace(R.id.home_linearlayout, detailperforFragment)
                     .addToBackStack(null)

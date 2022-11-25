@@ -1,6 +1,7 @@
 package com.example.festivalproject.HomePackage
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -37,8 +38,16 @@ class Perfor_fragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("life", "created")
         super.onViewCreated(view, savedInstanceState)
+
+        val seqSp = this.requireActivity().getSharedPreferences("SeqFlag",Context.MODE_PRIVATE)
+        val seqEditor = seqSp.edit()
+        seqEditor.putString("1","1")
+        seqEditor.commit()
+        val seqSp2 = this.requireActivity().getSharedPreferences("SeqFlag2", Context.MODE_PRIVATE)
+        val seqEditor2 = seqSp2.edit()
+        seqEditor2.putString("1","1")
+        seqEditor2.commit()
 
         val list = arrayOf<String>("전체", "서울", "경기", "인천", "대구", "광주", "대전", "울산")
         val activity = requireActivity()
@@ -231,7 +240,8 @@ fun getList(
                             list!!,
                             LayoutInflater.from(activity),
                             glide,
-                            transaction
+                            transaction,
+                            activity
                         )
                     perfor_recycler.adapter = adapter
                     perfor_recycler.layoutManager = LinearLayoutManager(activity)

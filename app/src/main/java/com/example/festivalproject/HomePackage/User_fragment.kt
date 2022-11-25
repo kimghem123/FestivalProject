@@ -43,6 +43,15 @@ class User_fragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val seqSp = this.requireActivity().getSharedPreferences("SeqFlag",Context.MODE_PRIVATE)
+        val seqEditor = seqSp.edit()
+        seqEditor.putString("1","1")
+        seqEditor.commit()
+        val seqSp2 = this.requireActivity().getSharedPreferences("SeqFlag2", Context.MODE_PRIVATE)
+        val seqEditor2 = seqSp2.edit()
+        seqEditor2.putString("1","2")
+        seqEditor2.commit()
+
         val context = this.requireActivity()
         val sp = context.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
         val id = sp.getString("userId", null).toString()
@@ -65,7 +74,8 @@ class User_fragment : Fragment() {
             getSeqList,
             LayoutInflater.from(context),
             glide,
-            transaction
+            transaction,
+            this.requireActivity()
         )
         context.user_recycler.adapter = adapter
         context.user_recycler.layoutManager = LinearLayoutManager(context)
@@ -83,17 +93,14 @@ class User_fragment : Fragment() {
             list.await().forEach {
                 getInfo(context, it, adapter)
             }
-
-
         }
 
-       /* val size = list2.size
-        Log.d("tet", "" + list2)
-        for (i in 0 until size) {
-            Log.d("tet", "" + i)
-            Log.d("tet", "" + list2.get(i))
-            getInfo(context, list2.get(i), adapter)
-        }*/
+        user_back.setOnClickListener {
+            val fragmentManager = context.supportFragmentManager
+            fragmentManager.beginTransaction().remove(Perfor_fragment()).commit()
+            fragmentManager.popBackStack()
+        }
+
 
     }
 }
