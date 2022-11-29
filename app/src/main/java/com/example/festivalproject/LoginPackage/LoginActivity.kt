@@ -6,6 +6,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.festivalproject.FindUserIdPackage.FindUserIdActivity
+import com.example.festivalproject.FindUserPasswordPackage.FindUserPasswordActivity
 import com.example.festivalproject.HomePackage.HomeActivity
 import com.example.festivalproject.R
 import com.example.festivalproject.RegisterPackage.RegisterActivity
@@ -45,10 +47,15 @@ class LoginActivity : AppCompatActivity() {
             registerButtonClick(this)
         }
 
+        login_findId.setOnClickListener {
+            startActivity(Intent(this@LoginActivity,FindUserIdActivity::class.java))
+        }
+
         login_findPassword.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
+            /*CoroutineScope(Dispatchers.IO).launch {
                 deleteAll(this@LoginActivity)
-            }
+            }*/
+            startActivity(Intent(this@LoginActivity,FindUserPasswordActivity::class.java))
         }
     }
 }

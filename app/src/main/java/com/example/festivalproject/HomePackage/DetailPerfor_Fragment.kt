@@ -48,9 +48,9 @@ class DetailPerfor_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val seqSp = this.requireActivity().getSharedPreferences("fragment", Context.MODE_PRIVATE)
+        //val seqSp = this.requireActivity().getSharedPreferences("fragment", Context.MODE_PRIVATE)
         val perforDetailInfo = PerforDetailInfo()
-        perforDetailInfo.setDetailSeq(seqSp.getString("seq", null).toString())
+        perforDetailInfo.setDetailSeq(arguments?.getString("detailCode").toString())
         Log.d("tet", perforDetailInfo.getDetailSeq().toString())
         val glide: RequestManager = Glide.with(this.requireActivity())
 

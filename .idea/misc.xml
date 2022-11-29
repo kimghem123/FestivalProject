@@ -12,12 +12,16 @@
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/layout_shape3.xml" value="0.276" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_button_shape.xml" value="0.31" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_item_color.xml" value="0.31" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_find_user_id.xml" value="0.2875" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_find_user_password.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_home.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_home2.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_login.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_register.xml" value="0.2635416666666667" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_blank.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_detail_find_user_id.xml" value="0.2875" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_detail_find_user_password.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_detail_perfor_.xml" value="0.2625" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_detail_perfor__contents_.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_detail_perfor__summary_.xml" value="0.34791666666666665" />

@@ -46,10 +46,10 @@ class RecyclerViewAdapter(
                 Log.d("arg",""+position)
                 Log.d("arg",""+detailCode)
                 bundle.putString("detailCode", detailCode)
-                val seqSp = activity.getSharedPreferences("fragment", Context.MODE_PRIVATE)
+                /*val seqSp = activity.getSharedPreferences("fragment", Context.MODE_PRIVATE)
                 val seqEditor = seqSp.edit()
                 seqEditor.putString("seq",detailCode)
-                seqEditor.commit()
+                seqEditor.commit()*/
                 detailperforFragment.arguments = bundle
                 transaction.replace(R.id.home_linearlayout, detailperforFragment)
                     .addToBackStack(null)

@@ -52,10 +52,10 @@ class UserFavRecyclerViewAdapter(
                 val bundle: Bundle = Bundle()
                 val detailCode = getSeqList.get(position)!!.msgBody.perforInfo.seq
                 bundle.putString("detailCode", detailCode)
-                val seqSp = activity.getSharedPreferences("fragment", Context.MODE_PRIVATE)
+                /*val seqSp = activity.getSharedPreferences("fragment", Context.MODE_PRIVATE)
                 val seqEditor = seqSp.edit()
                 seqEditor.putString("seq",detailCode)
-                seqEditor.commit()
+                seqEditor.commit()*/
                 detailperforFragment.arguments = bundle
                 transaction.replace(R.id.home_linearlayout, detailperforFragment)
                     .addToBackStack(null)

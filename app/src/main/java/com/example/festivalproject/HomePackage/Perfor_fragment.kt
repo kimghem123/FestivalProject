@@ -40,14 +40,14 @@ class Perfor_fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val seqSp = this.requireActivity().getSharedPreferences("SeqFlag",Context.MODE_PRIVATE)
+       /* val seqSp = this.requireActivity().getSharedPreferences("SeqFlag",Context.MODE_PRIVATE)
         val seqEditor = seqSp.edit()
         seqEditor.putString("1","1")
         seqEditor.commit()
         val seqSp2 = this.requireActivity().getSharedPreferences("SeqFlag2", Context.MODE_PRIVATE)
         val seqEditor2 = seqSp2.edit()
         seqEditor2.putString("1","1")
-        seqEditor2.commit()
+        seqEditor2.commit()*/
 
         val list = arrayOf<String>("전체", "서울", "경기", "인천", "대구", "광주", "대전", "울산")
         val activity = requireActivity()

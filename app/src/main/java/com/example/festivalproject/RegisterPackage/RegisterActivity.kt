@@ -42,8 +42,10 @@ class RegisterActivity : AppCompatActivity() {
         register_password2.doOnTextChanged { text, start, before, count ->
             if (register_password1.text.toString() != register_password2.text.toString()) {
                 register_passwordCheck.setText("#비밀번호가 일치하지 않습니다")
+                register_passwordCheck.setTextColor(Color.RED)
             } else if (register_password1.text.toString() == register_password2.text.toString()) {
                 register_passwordCheck.setText("비밀번호가 일치합니다")
+                register_passwordCheck.setTextColor(Color.BLUE)
             }
         }
 

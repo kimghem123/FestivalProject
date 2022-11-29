@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
         else{
-            startActivity(Intent(this@MainActivity,com.example.festivalproject.LoginPackage.LoginActivity::class.java))
+            startActivity(Intent(this@MainActivity,LoginActivity::class.java))
             finish()
         }
 
