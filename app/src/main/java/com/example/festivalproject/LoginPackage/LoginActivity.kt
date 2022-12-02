@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.festivalproject.FindUserIdPackage.FindUserIdActivity
 import com.example.festivalproject.FindUserPasswordPackage.FindUserPasswordActivity
 import com.example.festivalproject.HomePackage.HomeActivity
@@ -39,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     finish()
                 }
-                else Log.d("login", "fail")
+                else runOnUiThread { Toast.makeText(applicationContext,"로그인 정보가 일치하지 않습니다",Toast.LENGTH_SHORT).show() }
             }
         }
 
@@ -56,6 +57,12 @@ class LoginActivity : AppCompatActivity() {
                 deleteAll(this@LoginActivity)
             }*/
             startActivity(Intent(this@LoginActivity,FindUserPasswordActivity::class.java))
+        }
+
+        login_dbDelete.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                deleteAll(this@LoginActivity)
+            }
         }
     }
 }

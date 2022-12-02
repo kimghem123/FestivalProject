@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +14,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -143,20 +146,28 @@ fun getInfo(
                     setDetailPhoneInfo(info.msgBody.perforInfo.phone.toString())
                     setDetailImgInfo(info.msgBody.perforInfo.imgUrl.toString())
                 }
-                    activity.apply {
-                        detail_title.text = perforDetailInfo.getDetailTitleInfo()
-                        detail_date.text = perforDetailInfo.getDetailDateInfo()
-                        detail_addr.text = perforDetailInfo.getDetailAddrInfo()
-                        detail_price.text = perforDetailInfo.getDetailPriceInfo()
-                        detail_url.setOnClickListener {
-                            val intent = Intent(Intent.ACTION_VIEW,Uri.parse(perforDetailInfo.getDetailUrlInfo()))
-                            startActivity(intent)
-                        }
-                        detail_phone.setOnClickListener {
-                            Log.d("phone", "" + perforDetailInfo.getDetailPhoneInfo())
-                        }
-                        detail_contents.setText(perforDetailInfo.getDetailContentsInfo())
+                activity.apply {
+                    detail_title.text = perforDetailInfo.getDetailTitleInfo()
+                    detail_date.text = perforDetailInfo.getDetailDateInfo()
+                    detail_addr.text = perforDetailInfo.getDetailAddrInfo()
+                    detail_price.text = perforDetailInfo.getDetailPriceInfo()
+                    detail_url.setOnClickListener {
+                        val intent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse(perforDetailInfo.getDetailUrlInfo())
+                        )
+                        startActivity(intent)
                     }
+                    detail_phone.setOnClickListener {
+                        val intent = Intent(
+                            Intent.ACTION_DIAL,
+                            Uri.parse("tel:" + perforDetailInfo.getDetailPhoneInfo())
+                        )
+                        startActivity(intent)
+
+                    }
+                    detail_contents.setText(perforDetailInfo.getDetailContentsInfo())
+                }
                 glide.load(perforDetailInfo.getDetailImgInfo()).into(activity.detail_image)
             }
         }

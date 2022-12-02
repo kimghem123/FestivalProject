@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.festivalproject.R
@@ -26,13 +27,18 @@ class FindUserIdActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 val db = UserDatabase.getInstance(this@FindUserIdActivity.applicationContext)
                 val findId = db!!.userProfileDao().findUserId(findName, findPhoneNum)
-                val bundle: Bundle = Bundle()
-                Log.d("findId", "" + findId)
-                bundle.putString("FindUserId", findId)
-                detailFindUserIdFragment.arguments = bundle
-                val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-                transaction.replace(findId_Linear.id, detailFindUserIdFragment)
-                    .commit()
+                if(findId != null){
+                    val bundle: Bundle = Bundle()
+                    Log.d("findId", "" + findId)
+                    bundle.putString("FindUserId", findId)
+                    detailFindUserIdFragment.arguments = bundle
+                    val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(findId_Linear.id, detailFindUserIdFragment)
+                        .commit()
+                }
+                else{
+                    runOnUiThread { Toast.makeText(applicationContext,"일치하는 정보가 없습니다", Toast.LENGTH_SHORT).show() }
+                }
             }
 
         }

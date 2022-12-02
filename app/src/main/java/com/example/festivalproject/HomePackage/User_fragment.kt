@@ -43,14 +43,6 @@ class User_fragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val seqSp = this.requireActivity().getSharedPreferences("SeqFlag",Context.MODE_PRIVATE)
-        val seqEditor = seqSp.edit()
-        seqEditor.putString("1","1")
-        seqEditor.commit()
-        val seqSp2 = this.requireActivity().getSharedPreferences("SeqFlag2", Context.MODE_PRIVATE)
-        val seqEditor2 = seqSp2.edit()
-        seqEditor2.putString("1","2")
-        seqEditor2.commit()
 
         val context = this.requireActivity()
         val sp = context.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
@@ -64,11 +56,12 @@ class User_fragment : Fragment() {
                 R.anim.slide_out_right
             )
 
-        getUserNickName(id, context)
+        //getUserNickName(id, context)
 
         user_logout.setOnClickListener {
             logout(context)
         }
+
         var getSeqList = mutableListOf<GetSeq?>()
         val adapter = UserFavRecyclerViewAdapter(
             getSeqList,
@@ -105,7 +98,6 @@ class User_fragment : Fragment() {
     }
 }
 
-
 fun getInfo(
     activity: Activity,
     seq: String,
@@ -119,7 +111,6 @@ fun getInfo(
             if (response.isSuccessful) {
                 val info = response.body()
                 adapter.addItem(info)
-                //Log.d("tet",""+info!!.msgBody.perforInfo.place)
             }
         }
 
@@ -129,7 +120,7 @@ fun getInfo(
     })
 }
 
-fun getUserNickName(
+/*fun getUserNickName(
     id: String,
     context: Activity
 ) {
@@ -140,7 +131,7 @@ fun getUserNickName(
         userProfile.userNickName = nickName
         context.user_nickName.setText(userProfile.getterNickName())
     }
-}
+}*/
 
 fun logout(context: Activity) {
     val sp = context.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
