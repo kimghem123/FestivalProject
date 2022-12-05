@@ -108,7 +108,7 @@
             android:layout_height="60dp"
             android:backgroundTint="@color/mainColor"
             android:hint="이름을 입력해주세요"
-            android:inputType="text"
+            android:privateImeOptions="defalutInputmode=korean"
             android:maxLines="1"
             android:textSize="22dp" />
 

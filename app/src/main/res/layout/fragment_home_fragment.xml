@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/gray"
     tools:context=".HomePackage.Home_fragment">
 
     <RelativeLayout
@@ -43,131 +45,261 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:padding="10dp"
                 android:id="@+id/homeLinear1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
-                    android:layout_weight="1"
+                <ImageView
                     android:id="@+id/homefragment_A000"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
+                    android:src="@drawable/menu_theater"
+                    android:scaleType="center"
                     android:background="@drawable/menu_button_shape"
-                    android:layout_marginRight="5dp"
-                    android:text="연극" />
+                    android:layout_marginRight="5dp"/>
 
-                <Button
-                    android:layout_weight="1"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_A000"
+                    android:layout_alignTop="@id/homefragment_A000"
+                    android:layout_alignRight="@id/homefragment_A000"
+                    android:layout_alignBottom="@id/homefragment_A000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="연극"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <ImageView
                     android:id="@+id/homefragment_B000"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
                     android:layout_marginLeft="5dp"
-                    android:background="@drawable/menu_button_shape"
-                    android:text="음악" />
-            </LinearLayout>
+                    android:src="@drawable/menu_music"
+                    android:scaleType="center"
+                    android:layout_toRightOf="@id/homefragment_A000"
+                    android:background="@drawable/menu_button_shape"/>
 
-            <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_B000"
+                    android:layout_alignTop="@id/homefragment_B000"
+                    android:layout_alignRight="@id/homefragment_B000"
+                    android:layout_alignBottom="@id/homefragment_B000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="음악"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:padding="10dp"
                 android:id="@+id/homeLinear2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/homeLinear1">
 
-                <Button
-                    android:layout_weight="1"
+                <ImageView
                     android:id="@+id/homefragment_C000"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/menu_button_shape"
-                    android:text="무용" />
+                    android:scaleType="center"
+                    android:src="@drawable/menu_dancing" />
 
-                <Button
-                    android:layout_weight="1"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_C000"
+                    android:layout_alignTop="@id/homefragment_C000"
+                    android:layout_alignRight="@id/homefragment_C000"
+                    android:layout_alignBottom="@id/homefragment_C000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="무용"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <ImageView
                     android:id="@+id/homefragment_D000"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/menu_button_shape"
-                    android:text="미술" />
-            </LinearLayout>
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/menu_art"
+                    android:scaleType="center"
+                    android:layout_toRightOf="@id/homefragment_C000"
+                    android:background="@drawable/menu_button_shape"/>
 
-            <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_D000"
+                    android:layout_alignTop="@id/homefragment_D000"
+                    android:layout_alignRight="@id/homefragment_D000"
+                    android:layout_alignBottom="@id/homefragment_D000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="미술"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:padding="10dp"
                 android:id="@+id/homeLinear3"
                 android:layout_below="@id/homeLinear2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <Button
+                <ImageView
                     android:id="@+id/homefragment_E000"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/menu_button_shape"
-                    android:text="건축" />
+                    android:scaleType="center"
+                    android:src="@drawable/menu_architect" />
 
-                <Button
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_E000"
+                    android:layout_alignTop="@id/homefragment_E000"
+                    android:layout_alignRight="@id/homefragment_E000"
+                    android:layout_alignBottom="@id/homefragment_E000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="건축"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+                <ImageView
                     android:id="@+id/homefragment_G000"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/menu_button_shape"
-                    android:text="영상" />
-            </LinearLayout>
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/menu_video"
+                    android:scaleType="center"
+                    android:layout_toRightOf="@id/homefragment_E000"
+                    android:background="@drawable/menu_button_shape"/>
 
-            <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_G000"
+                    android:layout_alignTop="@id/homefragment_G000"
+                    android:layout_alignRight="@id/homefragment_G000"
+                    android:layout_alignBottom="@id/homefragment_G000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="영상"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/homeLinear4"
                 android:padding="10dp"
                 android:layout_below="@id/homeLinear3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <Button
+                <ImageView
                     android:id="@+id/homefragment_H000"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/menu_button_shape"
-                    android:text="문학" />
+                    android:scaleType="center"
+                    android:src="@drawable/menu_books" />
 
-                <Button
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_H000"
+                    android:layout_alignTop="@id/homefragment_H000"
+                    android:layout_alignRight="@id/homefragment_H000"
+                    android:layout_alignBottom="@id/homefragment_H000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="문학"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+                <ImageView
                     android:id="@+id/homefragment_I000"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/menu_button_shape"
-                    android:text="문화정책" />
-            </LinearLayout>
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/menu_culture"
+                    android:scaleType="center"
+                    android:layout_toRightOf="@id/homefragment_H000"
+                    android:background="@drawable/menu_button_shape"/>
 
-            <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_I000"
+                    android:layout_alignTop="@id/homefragment_I000"
+                    android:layout_alignRight="@id/homefragment_I000"
+                    android:layout_alignBottom="@id/homefragment_I000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="문화정책"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/homeLinear5"
                 android:layout_below="@id/homeLinear4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp">
-                <Button
+                <ImageView
                     android:id="@+id/homefragment_J000"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/menu_button_shape"
-                    android:text="축제문화공간" />
-
-                <Button
+                    android:scaleType="center"
+                    android:src="@drawable/menu_festival" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_J000"
+                    android:layout_alignTop="@id/homefragment_J000"
+                    android:layout_alignRight="@id/homefragment_J000"
+                    android:layout_alignBottom="@id/homefragment_J000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="축제문화공간"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+                <ImageView
                     android:id="@+id/homefragment_L000"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/menu_button_shape"
-                    android:text="기타" />
-            </LinearLayout>
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/menu_etc"
+                    android:scaleType="center"
+                    android:layout_toRightOf="@id/homefragment_J000"
+                    android:background="@drawable/menu_button_shape"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/homefragment_L000"
+                    android:layout_alignTop="@id/homefragment_L000"
+                    android:layout_alignRight="@id/homefragment_L000"
+                    android:layout_alignBottom="@id/homefragment_L000"
+                    android:gravity="center"
+                    android:paddingTop="100dp"
+                    android:text="기타"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+            </RelativeLayout>
 
 
             <TextView

@@ -17,7 +17,12 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.festivalproject.GetRealm
 import com.example.festivalproject.R
+import com.example.festivalproject.UserFavDatabase
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.perfor_item_view.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 
 class RecyclerViewAdapter(
     val itemList: GetRealm,
@@ -79,6 +84,7 @@ class RecyclerViewAdapter(
         glide.load(itemList.msgBody.perforList.get(position).thumbnail)
             .apply(RequestOptions.bitmapTransform(RoundedCorners(20)))
             .into(holder.image)
+
     }
 
     override fun getItemCount(): Int {

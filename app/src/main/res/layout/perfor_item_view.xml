@@ -15,8 +15,11 @@
         <ImageView
             android:id="@+id/perfor_image"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp" />
+            android:layout_height="130dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:id="@+id/perfor_linear"

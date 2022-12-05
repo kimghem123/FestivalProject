@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_architect.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_art.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_books.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_button_shape.xml" value="0.31" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_culture.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_dancing.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_etc.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_festival.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_item_color.xml" value="0.31" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_music.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_theater.xml" value="0.246" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_video.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_home.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_register.xml" value="0.259963768115942" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_home_fragment.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/perfor_item_view.xml" value="0.259963768115942" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/menu/home_bottom_navigationitem.xml" value="0.24114583333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>
