@@ -19,10 +19,14 @@
                 android:orientation="vertical">
 
                   <Button
+                      android:background="@drawable/back_button_shape"
                       android:id="@+id/user_back"
                       android:layout_width="50dp"
                       android:layout_height="50dp"
-                      android:layout_margin="10dp"
+                      android:layout_marginStart="10dp"
+                      android:layout_marginTop="10dp"
+                      android:layout_marginEnd="10dp"
+                      android:layout_marginBottom="10dp"
                       android:text="뒤로" />
                   <Button
                       android:id="@+id/user_logout"

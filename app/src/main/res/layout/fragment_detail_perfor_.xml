@@ -17,12 +17,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
+                    android:background="@drawable/back_button_shape"
                     android:id="@+id/detail_back"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:text="뒤로" />
+
                 <ImageView
+                    android:background="@color/gray"
                     android:id="@+id/detail_image"
                     android:layout_width="match_parent"
                     android:layout_height="300dp" />

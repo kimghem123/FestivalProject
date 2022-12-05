@@ -24,11 +24,13 @@
             android:textSize="40dp" />
 
         <Button
+            android:background="@drawable/back_button_shape"
             android:id="@+id/home_User"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="4dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:text="my" />
 
     </RelativeLayout>
@@ -53,7 +55,7 @@
 
                 <ImageView
                     android:id="@+id/homefragment_A000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
                     android:src="@drawable/menu_theater"
                     android:scaleType="center"
@@ -75,9 +77,9 @@
 
                 <ImageView
                     android:id="@+id/homefragment_B000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="4dp"
                     android:src="@drawable/menu_music"
                     android:scaleType="center"
                     android:layout_toRightOf="@id/homefragment_A000"
@@ -106,7 +108,7 @@
 
                 <ImageView
                     android:id="@+id/homefragment_C000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/menu_button_shape"
@@ -128,9 +130,9 @@
 
                 <ImageView
                     android:id="@+id/homefragment_D000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="4dp"
                     android:src="@drawable/menu_art"
                     android:scaleType="center"
                     android:layout_toRightOf="@id/homefragment_C000"
@@ -158,7 +160,7 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/homefragment_E000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/menu_button_shape"
@@ -179,9 +181,9 @@
                     android:textSize="20dp" />
                 <ImageView
                     android:id="@+id/homefragment_G000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="4dp"
                     android:src="@drawable/menu_video"
                     android:scaleType="center"
                     android:layout_toRightOf="@id/homefragment_E000"
@@ -209,7 +211,7 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/homefragment_H000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/menu_button_shape"
@@ -230,9 +232,9 @@
                     android:textSize="20dp" />
                 <ImageView
                     android:id="@+id/homefragment_I000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="4dp"
                     android:src="@drawable/menu_culture"
                     android:scaleType="center"
                     android:layout_toRightOf="@id/homefragment_H000"
@@ -260,7 +262,7 @@
                 android:padding="10dp">
                 <ImageView
                     android:id="@+id/homefragment_J000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/menu_button_shape"
@@ -280,9 +282,9 @@
                     android:textSize="20dp" />
                 <ImageView
                     android:id="@+id/homefragment_L000"
-                    android:layout_width="180dp"
+                    android:layout_width="165dp"
                     android:layout_height="180dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="4dp"
                     android:src="@drawable/menu_etc"
                     android:scaleType="center"
                     android:layout_toRightOf="@id/homefragment_J000"
