@@ -1,6 +1,7 @@
 package com.example.festivalproject.HomePackage
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -50,6 +51,7 @@ class DetailPerfor_Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         //val seqSp = this.requireActivity().getSharedPreferences("fragment", Context.MODE_PRIVATE)
         val perforDetailInfo = PerforDetailInfo()
@@ -110,12 +112,21 @@ class DetailPerfor_Fragment : Fragment() {
                 db.userFavDao().setfavList(list2, userId)
             }
         }
+        detail_image.setOnClickListener{
+            clickEvent(it,perforDetailInfo.getDetailImgInfo().toString(),this.requireActivity())
+        }
         detail_back.setOnClickListener {
             val fragmentManager = this.requireActivity().supportFragmentManager
             fragmentManager.beginTransaction().remove(Perfor_fragment()).commit()
             fragmentManager.popBackStack()
         }
     }
+}
+private fun clickEvent(view: View, imageUrl:String,activity: Activity) {
+    val intent = Intent(activity, ImageActivity::class.java)
+    intent.putExtra("imageUrl", imageUrl)
+    val opt = ActivityOptions.makeSceneTransitionAnimation(activity, view, "imgTrans")
+    activity.startActivity(intent, opt.toBundle())
 }
 
 fun getInfo(

@@ -8,61 +8,70 @@
     tools:context=".HomePackage.DetailPerfor_Fragment">
 
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="300dp">
 
-            <RelativeLayout
+            <Button
+                android:id="@+id/detail_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/back_button_shape"
+                android:text="뒤로" />
+
+
+            <ImageView
+                android:id="@+id/detail_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <Button
-                    android:background="@drawable/back_button_shape"
-                    android:id="@+id/detail_back"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    android:text="뒤로" />
-
-                <ImageView
-                    android:background="@color/gray"
-                    android:id="@+id/detail_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp" />
-
-                <Button
-                    android:text="찜"
-                    android:id="@+id/detail_favorite"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#9A9A9A" />
-
-            </RelativeLayout>
+                android:layout_height="300dp"
+                android:background="@color/gray" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:background="@color/mainColor" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:text="클릭시 확대"
+                android:textColor="@color/black" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/detail_tab"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                app:tabIndicatorColor="@color/mainColor"
-                app:tabTextAppearance="@style/tab_text"
-                app:tabTextColor="#000000">
-            </com.google.android.material.tabs.TabLayout>
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/detail_viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </androidx.viewpager.widget.ViewPager>
+            <Button
+                android:id="@+id/detail_favorite"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#9A9A9A"
+                android:text="찜" />
 
-        </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:background="@color/mainColor" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/detail_tab"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            app:tabIndicatorColor="@color/mainColor"
+            app:tabTextAppearance="@style/tab_text"
+            app:tabTextColor="#000000"></com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/detail_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
 </LinearLayout>

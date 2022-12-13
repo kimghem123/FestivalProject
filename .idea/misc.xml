@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/back_button_shape.xml" value="0.31" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/layout_shape2.xml" value="0.31" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/main_image.xml" value="0.31" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_architect.xml" value="0.247" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_art.xml" value="0.247" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_books.xml" value="0.247" />
@@ -17,8 +18,14 @@
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_music.xml" value="0.247" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_theater.xml" value="0.246" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/drawable/menu_video.xml" value="0.247" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_find_user_id.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_find_user_password.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_home.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_image.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_login.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/activity_register.xml" value="0.259963768115942" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_detail_find_user_id.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_detail_find_user_password.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_detail_perfor_.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_detail_perfor__summary_.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/kimguiheum/AndroidStudioProjects/FestivalProject/app/src/main/res/layout/fragment_home_fragment.xml" value="0.24114583333333334" />

@@ -139,6 +139,7 @@ fun logout(context: Activity) {
     editor.remove("userId")
     editor.remove("userPassword")
     editor.commit()
+    context.finish()
     val intent = Intent(context, MainActivity::class.java)
     context.startActivity(intent)
 }
